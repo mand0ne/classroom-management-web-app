@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rezervacije</title>
+    <link rel="stylesheet" href="rezervacija.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="meni">
+        <div class="logo">
+            <img src="logo.png" alt="Page logo">
+        </div>
+
+        <ul>
+            <li><a href="../zadatak3/pocetna.html">Početna</a></li>
+            <li><a href="../zadatak1/sale.html">Sale</a></li>
+            <li><a href="../zadatak2/unos.html">Unos</a></li>
+            <li><a href="rezervacija.html">Rezervacije</a></li>
+            <li><a href="#">Osobe</a></li>
+        </ul>
+    </div>
+
+    <br>
+
+    <div class="sadrzaj">
+
+        <form>
+
+            <div class="lbin">
+                <label>Sala: </label>
+                <select name="sale">
+                    <option value="0-01">0-01</option>
+                    <option value="0-02">0-02</option>
+                    <option value="0-03">0-03</option>
+                    <option value="0-04">0-04</option>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="EE1">EE1</option>
+                    <option value="EE2">EE2</option>
+                </select>
+            </div>
+
+
+            <div class="lbin"><label>Periodično: </label> <input type="checkbox" name="periodicno"></div>
+            <div class="lbin"><label>Početak: </label> <input type="time" name="pocetak"></div>
+            <div class="lbin"><label>Kraj: </label> <input type="time" name="kraj"></div>
+        </form>
+
+
+        <div class="kalendar">
+            <div class="mjesec">Novembar</div>
+
+            <div class="sedmica">
+                <div>PON</div>
+                <div>UTO</div>
+                <div>SRI</div>
+                <div>ČET</div>
+                <div>PET</div>
+                <div>SUB</div>
+                <div>NED</div>
+            </div>
+
+            <div class="dani">
+                <div class="slobodna">1</div>
+                <div class="slobodna">2</div>
+                <div class="zauzeta">3</div>
+                <div class="slobodna">4</div>
+                <div class="zauzeta">5</div>
+                <div class="slobodna">6</div>
+                <div class="zauzeta">7</div>
+                <div class="slobodna">8</div>
+                <div class="zauzeta">9</div>
+                <div class="slobodna">10</div>
+                <div class="slobodna">11</div>
+                <div class="zauzeta">12</div>
+                <div class="slobodna">13</div>
+                <div class="slobodna">14</div>
+                <div class="slobodna">15</div>
+                <div class="zauzeta">16</div>
+                <div class="slobodna">17</div>
+                <div class="zauzetaa">18</div>
+                <div class="zauzeta">19</div>
+                <div class="slobodna">20</div>
+                <div class="slobodna">21</div>
+                <div class="zauzeta">22</div>
+                <div class="slobodna">23</div>
+                <div class="slobodna">24</div>
+                <div class="slobodna">25</div>
+                <div class="zauzeta">26</div>
+                <div class="slobodna">27</div>
+                <div class="zauzeta">28</div>
+                <div class="slobodna">29</div>
+                <div class="slobodna">30</div>
+            </div>
+
+            <div class="dugmad">
+                <button id="pret">Prethodni</button>
+                <button id="sljed">Sljedeći</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
