@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "zadatak2/unosMobile.gspec",
+    "startedAt" : 1573662310021,
+    "endedAt" : 1573662319742,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 19,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 20
+    },
+    "testId" : "1-zadatak2-unosmobile.gspec",
+    "duration" : 9721,
+    "failed" : true
+  } ]
+}

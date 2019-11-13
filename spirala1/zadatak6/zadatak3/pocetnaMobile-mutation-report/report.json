@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "zadatak3/pocetnaMobile.gspec",
+    "startedAt" : 1573669398725,
+    "endedAt" : 1573669408701,
+    "failed" : false,
+    "statistic" : {
+      "passed" : 20,
+      "errors" : 0,
+      "warnings" : 0,
+      "total" : 20
+    },
+    "testId" : "1-zadatak3-pocetnamobile.gspec",
+    "duration" : 9976,
+    "failed" : false
+  } ]
+}

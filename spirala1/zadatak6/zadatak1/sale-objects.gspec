@@ -1,0 +1,11 @@
+@objects
+    meni .meni
+    logo .logo
+    sadrzaj .sadrzaj
+    tabelaSala .tabelaSala
+    headerSprat .headerSprat
+    headerRedni .headerRedni
+    slobodnaSala .slobodnaSala
+    zauzetaSala .zauzetaSala
+    sala .sala
+    kancelarija .kancelarija

@@ -1,0 +1,596 @@
+{
+  "testId" : "1-zadatak3-pocetnamobile.gspec",
+  "name" : "zadatak3/pocetnaMobile.gspec",
+  "report" : {
+    "nodes" : [ {
+      "name" : "Mutation test",
+      "status" : "info",
+      "nodes" : [ {
+        "name" : "check  zadatak3/pocetnaMobile.gspec --url http://localhost/spirala1/zadatak3/pocetna.html --size 375x900 --offset 5 --htmlreport zadatak3/pocetnaMobile-mutation-report",
+        "status" : "info",
+        "nodes" : [ {
+          "name" : "Check layout: zadatak3/pocetnaMobile.gspec included tags: ",
+          "status" : "info",
+          "time" : 1573669406000,
+          "sections" : [ {
+            "name" : "Skeleton",
+            "place" : {
+              "filePath" : "zadatak3/pocetnaMobile.gspec",
+              "lineNumber" : 12
+            },
+            "objects" : [ {
+              "name" : "meni",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 16
+                },
+                "name" : "inside screen 40px top, 8px left right",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "40px",
+                  "realDistance" : "40px"
+                }, {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "8px",
+                  "realDistance" : "8px"
+                }, {
+                  "from" : {
+                    "object" : "meni",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "8px",
+                  "realDistance" : "8px"
+                } ],
+                "highlight" : [ "meni", "screen" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 19
+                },
+                "name" : "centered horizontally inside screen 1px",
+                "highlight" : [ "meni", "screen" ]
+              } ]
+            }, {
+              "name" : "sadrzaj",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 19
+                },
+                "name" : "centered horizontally inside screen 1px",
+                "highlight" : [ "sadrzaj", "screen" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 22
+                },
+                "name" : "inside screen 8px left right bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "8px",
+                  "realDistance" : "8px"
+                }, {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "8px",
+                  "realDistance" : "8px"
+                }, {
+                  "from" : {
+                    "object" : "sadrzaj",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "screen",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "8px",
+                  "realDistance" : "8px"
+                } ],
+                "highlight" : [ "sadrzaj", "screen" ]
+              } ]
+            } ],
+            "sections" : [ {
+              "name" : "meni, sadrzaj are aligned vertically above each other with 18px margin",
+              "place" : {
+                "filePath" : "zadatak3/pocetnaMobile.gspec",
+                "lineNumber" : 13
+              },
+              "objects" : [ {
+                "name" : "meni",
+                "specs" : [ {
+                  "status" : "info",
+                  "place" : {
+                    "filePath" : "zadatak3/../galen-extras/galen-extras-rules.gspec",
+                    "lineNumber" : 214
+                  },
+                  "name" : "aligned vertically all sadrzaj 1px",
+                  "highlight" : [ "meni", "sadrzaj" ]
+                }, {
+                  "status" : "info",
+                  "place" : {
+                    "filePath" : "zadatak3/../galen-extras/galen-extras-rules.gspec",
+                    "lineNumber" : 215
+                  },
+                  "name" : "above sadrzaj 18px",
+                  "meta" : [ {
+                    "from" : {
+                      "object" : "meni",
+                      "edge" : "bottom"
+                    },
+                    "to" : {
+                      "object" : "sadrzaj",
+                      "edge" : "top"
+                    },
+                    "expectedDistance" : "18px",
+                    "realDistance" : "18px"
+                  } ],
+                  "highlight" : [ "meni", "sadrzaj" ]
+                } ]
+              } ]
+            } ]
+          }, {
+            "name" : "meni elements",
+            "place" : {
+              "filePath" : "zadatak3/pocetnaMobile.gspec",
+              "lineNumber" : 24
+            },
+            "objects" : [ {
+              "name" : "meni_element",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 28
+                },
+                "name" : "height 34px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_element",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_element",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "34px",
+                  "realDistance" : "34px"
+                } ],
+                "highlight" : [ "meni_element" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 29
+                },
+                "name" : "inside meni_lista 0px top right, 10px left",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_element",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni_lista",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                }, {
+                  "from" : {
+                    "object" : "meni_element",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "meni_lista",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                }, {
+                  "from" : {
+                    "object" : "meni_element",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "meni_lista",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "10px",
+                  "realDistance" : "10px"
+                } ],
+                "highlight" : [ "meni_element", "meni_lista" ]
+              } ]
+            }, {
+              "name" : "meni_lista",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 32
+                },
+                "name" : "inside meni 2px left right, 18px bottom",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "meni_lista",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "2px",
+                  "realDistance" : "2px"
+                }, {
+                  "from" : {
+                    "object" : "meni_lista",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "2px",
+                  "realDistance" : "2px"
+                }, {
+                  "from" : {
+                    "object" : "meni_lista",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "18px",
+                  "realDistance" : "18px"
+                } ],
+                "highlight" : [ "meni_lista", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 39
+                },
+                "name" : "centered horizontally inside meni 1px",
+                "highlight" : [ "meni_lista", "meni" ]
+              } ]
+            }, {
+              "name" : "logo",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 35
+                },
+                "name" : "height 40px",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "logo",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "40px",
+                  "realDistance" : "40px"
+                } ],
+                "highlight" : [ "logo" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 36
+                },
+                "name" : "inside meni 2px top left right",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "2px",
+                  "realDistance" : "2px"
+                }, {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "2px",
+                  "realDistance" : "2px"
+                }, {
+                  "from" : {
+                    "object" : "logo",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "meni",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "2px",
+                  "realDistance" : "2px"
+                } ],
+                "highlight" : [ "logo", "meni" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 39
+                },
+                "name" : "centered horizontally inside meni 1px",
+                "highlight" : [ "logo", "meni" ]
+              } ]
+            } ],
+            "sections" : [ {
+              "name" : "logo, meni_lista are aligned vertically above each other with 16px margin",
+              "place" : {
+                "filePath" : "zadatak3/pocetnaMobile.gspec",
+                "lineNumber" : 25
+              },
+              "objects" : [ {
+                "name" : "logo",
+                "specs" : [ {
+                  "status" : "info",
+                  "place" : {
+                    "filePath" : "zadatak3/../galen-extras/galen-extras-rules.gspec",
+                    "lineNumber" : 214
+                  },
+                  "name" : "aligned vertically all meni_lista 1px",
+                  "highlight" : [ "logo", "meni_lista" ]
+                }, {
+                  "status" : "info",
+                  "place" : {
+                    "filePath" : "zadatak3/../galen-extras/galen-extras-rules.gspec",
+                    "lineNumber" : 215
+                  },
+                  "name" : "above meni_lista 16px",
+                  "meta" : [ {
+                    "from" : {
+                      "object" : "logo",
+                      "edge" : "bottom"
+                    },
+                    "to" : {
+                      "object" : "meni_lista",
+                      "edge" : "top"
+                    },
+                    "expectedDistance" : "16px",
+                    "realDistance" : "16px"
+                  } ],
+                  "highlight" : [ "logo", "meni_lista" ]
+                } ]
+              } ]
+            } ]
+          }, {
+            "name" : "sadrzaj elements",
+            "place" : {
+              "filePath" : "zadatak3/pocetnaMobile.gspec",
+              "lineNumber" : 41
+            },
+            "objects" : [ {
+              "name" : "slika",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 43
+                },
+                "name" : "centered horizontally inside okvir_slike 1px",
+                "highlight" : [ "slika", "okvir_slike" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 44
+                },
+                "name" : "inside okvir_slike 3px bottom, 0px top left right",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "slika",
+                    "edge" : "bottom"
+                  },
+                  "to" : {
+                    "object" : "okvir_slike",
+                    "edge" : "bottom"
+                  },
+                  "expectedDistance" : "3px",
+                  "realDistance" : "3px"
+                }, {
+                  "from" : {
+                    "object" : "slika",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "okvir_slike",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                }, {
+                  "from" : {
+                    "object" : "slika",
+                    "edge" : "left"
+                  },
+                  "to" : {
+                    "object" : "okvir_slike",
+                    "edge" : "left"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                }, {
+                  "from" : {
+                    "object" : "slika",
+                    "edge" : "right"
+                  },
+                  "to" : {
+                    "object" : "okvir_slike",
+                    "edge" : "right"
+                  },
+                  "expectedDistance" : "0px",
+                  "realDistance" : "0px"
+                } ],
+                "highlight" : [ "slika", "okvir_slike" ]
+              } ]
+            }, {
+              "name" : "okvir_slike",
+              "specs" : [ {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 47
+                },
+                "name" : "centered horizontally inside sadrzaj 1px",
+                "highlight" : [ "okvir_slike", "sadrzaj" ]
+              }, {
+                "status" : "info",
+                "place" : {
+                  "filePath" : "zadatak3/pocetnaMobile.gspec",
+                  "lineNumber" : 48
+                },
+                "name" : "inside sadrzaj 22px top",
+                "meta" : [ {
+                  "from" : {
+                    "object" : "okvir_slike",
+                    "edge" : "top"
+                  },
+                  "to" : {
+                    "object" : "sadrzaj",
+                    "edge" : "top"
+                  },
+                  "expectedDistance" : "22px",
+                  "realDistance" : "22px"
+                } ],
+                "highlight" : [ "okvir_slike", "sadrzaj" ]
+              } ]
+            } ]
+          } ],
+          "objects" : {
+            "meni" : {
+              "area" : [ 8, 40, 330, 246 ]
+            },
+            "meni_element" : {
+              "area" : [ 20, 98, 316, 34 ]
+            },
+            "slika" : {
+              "area" : [ 93, 326, 160, 120 ]
+            },
+            "okvir_slike" : {
+              "area" : [ 93, 326, 160, 123 ]
+            },
+            "meni_lista" : {
+              "area" : [ 10, 98, 326, 170 ]
+            },
+            "screen" : {
+              "area" : [ 0, 0, 346, 1681 ]
+            },
+            "logo" : {
+              "area" : [ 10, 42, 326, 40 ]
+            },
+            "sadrzaj" : {
+              "area" : [ 8, 304, 330, 1369 ]
+            }
+          },
+          "screenshot" : "layout-1-screenshot.png",
+          "type" : "layout"
+        }, {
+          "name" : "Mutation testing: zadatak3/pocetnaMobile.gspec included tags: ",
+          "status" : "info",
+          "time" : 1573669406000,
+          "mutationReport" : {
+            "objectMutationStatistics" : {
+              "meni" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "meni_element" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "slika" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "okvir_slike" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "meni_lista" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "screen" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "logo" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              },
+              "sadrzaj" : {
+                "passed" : 10,
+                "failed" : 0,
+                "failedMutations" : [ ]
+              }
+            },
+            "totalPassed" : 80,
+            "totalFailed" : 0,
+            "totalMutations" : 80,
+            "failedRatio" : 0.0
+          },
+          "type" : "mutation"
+        } ],
+        "time" : 1573669403880,
+        "type" : "node"
+      } ],
+      "time" : 1573669398725,
+      "type" : "node"
+    } ]
+  }
+}

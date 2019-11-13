@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "zadatak3/pocetna.gspec",
+    "startedAt" : 1573669345246,
+    "endedAt" : 1573669355160,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 20,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 21
+    },
+    "testId" : "1-zadatak3-pocetna.gspec",
+    "duration" : 9914,
+    "failed" : true
+  } ]
+}

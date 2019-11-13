@@ -1,0 +1,49 @@
+@import ../galen-extras/galen-extras-rules.gspec
+
+@objects
+    meni .meni
+    logo .logo
+    sadrzaj .sadrzaj
+    forma .sadrzaj form
+    slika .sadrzaj form div img
+    input_text .sadrzaj form div input[type='text']
+    input_number .sadrzaj form div input[type='number']
+    input_email .sadrzaj form div input[type='email']
+    input_submit .sadrzaj form div input[type='submit']
+
+= Skeleton =
+    | meni, sadrzaj are aligned vertically above each other with 18px margin
+
+    meni:
+        inside screen 40px top, 8px left right
+
+    meni, sadrzaj:
+        centered horizontally inside screen 1px
+
+    sadrzaj:
+        inside screen 8px left right
+
+= meni elements =
+    logo:
+        centered horizontally inside meni 1px
+        height 40px
+        inside meni 2px top left right
+
+= sadrzaj elements =
+    input_email:
+        below input_number 28px
+
+    input_text, input_number, input_email:
+        height 22px
+
+    input_text:
+        above input_number 28px
+        inside forma 23px top, 5px left
+
+    input_number, input_email:
+        inside forma 5px left
+
+    forma:
+        centered horizontally inside sadrzaj 1px
+        inside sadrzaj 22px top left right bottom
+

@@ -1,0 +1,98 @@
+@import ../galen-extras/galen-extras-rules.gspec
+
+@objects
+    meni .meni
+    logo .logo
+    lista .meni ul
+    sadrzaj .sadrzaj
+    forma .sadrzaj form
+    padajuca_lisa .sadrzaj form div select
+    input_checkbox .sadrzaj form div input[type='checkbox']
+    input_time .sadrzaj form div input[type='time']
+    kalendar .kalendar
+    mjesec .mjesec
+    sedmica .sedmica
+    dani .dani
+    slobodna .slobodna
+    zauzeta .zauzeta
+    dugme .button
+
+= Skeleton =
+    | meni, sadrzaj are aligned vertically above each other with 18px margin
+
+    meni:
+        inside screen 40px top, 8px left right
+
+    meni, sadrzaj:
+        centered horizontally inside screen 1px
+
+    sadrzaj:
+        inside screen 8px left right
+
+= meni elements =
+    | logo, lista are aligned vertically above each other with 16px margin
+
+    lista:
+        height 18px
+        inside meni 2px left right, 18px bottom
+
+    logo:
+        height 40px
+        inside meni 2px top left right
+
+    logo, lista:
+        centered horizontally inside meni 1px
+
+= sadrzaj elements =
+    | input_checkbox should be squared with 13px size
+    | mjesec, sedmica, dani are aligned vertically above each other with 0px margin
+    | slobodna, zauzeta are aligned horizontally next to each other with 57px margin
+
+    input_time:
+        height 22px
+        inside forma 29px bottom
+
+    mjesec:
+        height 23px
+        inside kalendar 2px top left right
+
+    forma:
+        above kalendar 30px
+        inside sadrzaj 22px top left right
+
+    mjesec, sedmica, dani:
+        centered horizontally inside kalendar 1px
+
+    zauzeta:
+        inside dani 6px top right
+
+    input_checkbox:
+        above input_time 14px
+        below padajuca_lisa 10px
+        inside forma
+
+    dani:
+        inside kalendar 2px left right bottom
+
+    sedmica:
+        height 31px
+        inside kalendar 2px left right
+
+    forma, kalendar:
+        centered horizontally inside sadrzaj 1px
+
+    padajuca_lisa:
+        height 20px
+        inside forma 4px top
+        width 53px
+
+    kalendar:
+        inside sadrzaj 52px bottom, >= 22px left right
+
+    slobodna, zauzeta:
+        height 40px
+        width 47px
+
+    slobodna:
+        inside dani 6px top
+

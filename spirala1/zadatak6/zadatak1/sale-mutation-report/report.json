@@ -1,0 +1,17 @@
+{
+  "tests" : [ {
+    "name" : "zadatak1/sale.gspec",
+    "startedAt" : 1573661918211,
+    "endedAt" : 1573661929404,
+    "failed" : true,
+    "statistic" : {
+      "passed" : 33,
+      "errors" : 1,
+      "warnings" : 0,
+      "total" : 34
+    },
+    "testId" : "1-zadatak1-sale.gspec",
+    "duration" : 11193,
+    "failed" : true
+  } ]
+}

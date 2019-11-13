@@ -1,0 +1,10 @@
+@objects
+    meni .meni
+    logo .logo
+    sadrzaj .sadrzaj
+    forma .sadrzaj form
+    slika .sadrzaj form div img
+    input_text .sadrzaj form div input[type='text']
+    input_number .sadrzaj form div input[type='number']
+    input_email .sadrzaj form div input[type='email']
+    input_submit .sadrzaj form div input[type='submit']
