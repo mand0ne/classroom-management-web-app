@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="../css/rezervacija.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js-modules/kalendar.js">
+    </script>
 </head>
 
-<body>
+<body onload="Kalendar.ucitajPodatke()">
+
+
     <div class="meni">
         <div class="logo">
             <img src="../resources/logo.png" alt="Page logo">
@@ -26,16 +30,20 @@
     <br>
 
     <div class="sadrzaj">
-
         <form>
-
             <div class="lbin">
                 <label>Sala: </label>
                 <select name="sale">
                     <option value="0-01">0-01</option>
                     <option value="0-02">0-02</option>
-                    <option value="0-03">0-03</option>
-                    <option value="0-04">0-04</option>
+                    <option value="0-03">0-01</option>
+                    <option value="0-04">0-02</option>
+                    <option value="0-05">0-01</option>
+                    <option value="1-01">0-03</option>
+                    <option value="1-02">0-04</option>
+                    <option value="1-03">0-03</option>
+                    <option value="1-04">0-04</option>
+                    <option value="1-05">0-03</option>
                     <option value="A1">A1</option>
                     <option value="A2">A2</option>
                     <option value="A3">A3</option>
@@ -65,36 +73,36 @@
             </div>
 
             <div class="dani">
-                <div class="slobodna">1</div>
-                <div class="slobodna">2</div>
-                <div class="zauzeta">3</div>
-                <div class="slobodna">4</div>
-                <div class="zauzeta">5</div>
-                <div class="slobodna">6</div>
-                <div class="zauzeta">7</div>
-                <div class="slobodna">8</div>
-                <div class="zauzeta">9</div>
-                <div class="slobodna">10</div>
-                <div class="slobodna">11</div>
-                <div class="zauzeta">12</div>
-                <div class="slobodna">13</div>
-                <div class="slobodna">14</div>
-                <div class="slobodna">15</div>
-                <div class="zauzeta">16</div>
-                <div class="slobodna">17</div>
-                <div class="zauzetaa">18</div>
-                <div class="zauzeta">19</div>
-                <div class="slobodna">20</div>
-                <div class="slobodna">21</div>
-                <div class="zauzeta">22</div>
-                <div class="slobodna">23</div>
-                <div class="slobodna">24</div>
-                <div class="slobodna">25</div>
-                <div class="zauzeta">26</div>
-                <div class="slobodna">27</div>
-                <div class="zauzeta">28</div>
-                <div class="slobodna">29</div>
-                <div class="slobodna">30</div>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div>
+                <div>9</div>
+                <div>10</div>
+                <div>11</div>
+                <div>12</div>
+                <div>13</div>
+                <div>14</div>
+                <div>15</div>
+                <div>16</div>
+                <div>17</div>
+                <div>18</div>
+                <div>19</div>
+                <div>20</div>
+                <div>21</div>
+                <div>22</div>
+                <div>23</div>
+                <div>24</div>
+                <div>25</div>
+                <div>26</div>
+                <div>27</div>
+                <div>28</div>
+                <div>29</div>
+                <div>30</div>
             </div>
 
             <div class="dugmad">
