@@ -2,29 +2,15 @@
 <html>
 
 <head>
-    <title>Rezervacije</title>
-    <link rel="stylesheet" href="../css/rezervacija.css">
+    <title>Testovi - Spirala 2</title>
+    <link rel="stylesheet" href="../css/testoviS2.css">
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-
-    <div class="meni">
-        <div class="logo">
-            <img src="../resources/logo.png" alt="Page logo">
-        </div>
-
-        <ul>
-            <li><a href="pocetna.html">Početna</a></li>
-            <li><a href="sale.html">Sale</a></li>
-            <li><a href="unos.html">Unos</a></li>
-            <li><a href="rezervacija.html">Rezervacije</a></li>
-            <li><a href="#">Osobe</a></li>
-        </ul>
-    </div>
-
-    <br>
+    <div id="mocha"></div>
 
     <div class="sadrzaj">
         <form>
@@ -92,7 +78,20 @@
         </div>
     </div>
 
-    <script src="../js-modules/kalendar.js" defer></script>
+    <script src="https://unpkg.com/chai/chai.js"></script>
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+
+    <script class="mocha-init">
+        mocha.setup('bdd');
+        mocha.checkLeaks();
+    </script>
+
+    <script src="../js-modules/kalendar.js"></script>
+    <script src="../js-modules/testovi.js"></script>
+
+    <script class="mocha-exec">
+        mocha.run().globals(['i']);
+    </script>
 
 </body>
 

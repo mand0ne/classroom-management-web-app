@@ -1,8 +1,0 @@
-@objects
-    meni .meni
-    logo .logo
-    meni_lista .meni ul
-    meni_element .meni li
-    sadrzaj .sadrzaj
-    okvir_slike .sadrzaj div
-    slika .sadrzaj div img
