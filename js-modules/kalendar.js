@@ -30,6 +30,12 @@ let Kalendar = (function () {
     const _months = ["Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"];
 
     function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
+        const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
+
+        if (kalendarRef == null || kalendarRef == undefined || mjesec < 0 || mjesec > 11 || sala == null || sala == undefined
+            || !regex.test(pocetak) || !regex.test(kraj))
+            return;
+
         var dani = kalendarRef.querySelector(".dani").children;
 
         if (pocetak == '' || kraj == '' || _vanrednaZauzeca.length == 0 && _periodicnaZauzeca.length == 0) {
@@ -43,8 +49,6 @@ let Kalendar = (function () {
             document.getElementById("err").innerHTML = "Kraj mora biti kasnije od početka!"
         else
             document.getElementById("err").innerHTML = '';
-
-        var dani = kalendarRef.querySelector(".dani").children;
 
         for (let i = 0; i < dani.length; i++)
             dani[i].className = 'slobodna';
@@ -96,7 +100,7 @@ let Kalendar = (function () {
         if (periodicna == undefined) {
             _periodicnaZauzeca.push(new PeriodicnoZauzece(1, "zimski", "15:00", "18:00", "0-03", "Nebitno"));
             _periodicnaZauzeca.push(new PeriodicnoZauzece(0, "zimski", "12:00", "15:00", "0-05", "Nebitno"));
-            _periodicnaZauzeca.push(new PeriodicnoZauzece(1, 'zimski', "20:00", "22:00", "1-01", "ZJ"));
+            _periodicnaZauzeca.push(new PeriodicnoZauzece(1, 'zimski', "20:00", "22:00", "1-01", "Nebitno"));
             _periodicnaZauzeca.push(new PeriodicnoZauzece(6, "zimski", "21:00", "23:00", "1-04", "Nebitno"));
             _periodicnaZauzeca.push(new PeriodicnoZauzece(5, "zimski", "21:00", "22:00", "A3", "Nebitno"));
 
@@ -114,10 +118,10 @@ let Kalendar = (function () {
         if (vanredna == undefined) {
             _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 0, 8), "12:45", "16:30", "EE1", "Nebitno"));
             _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 9, 21), "17:00", "17:45", "A2", "Nebitno"));
-            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 10, 1), "13:00", "15:00", "1-01", "NN"));
-            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 10, 29), "16:00", "17:00", "1-01", "VO"));
+            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 10, 1), "13:00", "15:00", "1-01", "Nebitno"));
+            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 10, 29), "16:00", "17:00", "1-01", "Nebitno"));
             _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 11, 31), "16:00", "18:00", "1-02", "Nebitno"));
-            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 11, 3), "16:00", "18:00", "1-04", "VO"));
+            _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 11, 3), "16:00", "18:00", "1-04", "Nebitno"));
 
             _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 1, 16), "18:30", "19:05", "A3", "Nebitno"));
             _vanrednaZauzeca.push(new VanrednoZauzece(new Date(2019, 1, 6), "15:30", "18:00", "A3", "Nebitno"));
@@ -175,14 +179,14 @@ let Kalendar = (function () {
         dani.innerHTML = "";
         for (let i = 1; i <= brojDana; i++) {
             var dan = document.createElement("div");
-            var node = document.createTextNode(i);
-            dan.appendChild(node);
+            dan.appendChild(document.createTextNode(i));
             dani.appendChild(dan);
         }
 
         dani.firstElementChild.style.gridColumnStart = datum.getDay() == 0 ? 7 : datum.getDay();
 
-        obojiZauzecaImpl(kalendarRef, _trenutniMjesec, document.getElementsByClassName('lbin')[0].lastElementChild.value, document.querySelector('input[name=pocetak').value, document.querySelector('input[name=kraj').value)
+        obojiZauzecaImpl(kalendarRef, _trenutniMjesec, document.getElementsByClassName('lbin')[0].lastElementChild.value,
+            document.querySelector('input[name=pocetak').value, document.querySelector('input[name=kraj').value)
     }
 
     function getTrenutniMjesecImpl() {
