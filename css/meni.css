@@ -28,10 +28,6 @@ body {
     color: black;
 }
 
-.meni ul li:nth-child(3) a {
-    text-decoration: none;
-}
-
 .logo {
     height: 40px;
 }

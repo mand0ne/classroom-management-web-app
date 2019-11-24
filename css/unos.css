@@ -1,3 +1,7 @@
+.meni ul li:nth-child(3) a {
+    text-decoration: none;
+}
+
 .sadrzaj {
     padding: 20px;
     background-color: lightsteelblue;
