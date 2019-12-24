@@ -1,0 +1,20 @@
+{
+  "name": "wt1918088",
+  "version": "1.0.0",
+  "description": "spirala3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mand0ne@bitbucket.org/mand0ne/wt1918088.git"
+  },
+  "author": "Anel Mandal",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mand0ne/wt1918088#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node": "^13.5.0"
+  }
+}
