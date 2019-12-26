@@ -25,9 +25,9 @@ let Pozivi = (function() {
         ajax.onreadystatechange = function() {// Anonimna funkcija
             if (ajax.readyState == 4 && ajax.status == 200){
                 console.log("AJAX RESPONSE TEXT JARA: \n" + ajax.responseText);
-
             }
         }
+        
         ajax.open("POST","/rezervisiVanredno",true);
         ajax.setRequestHeader("Content-Type", "application/json");
         ajax.send(JSON.stringify(vanredno));

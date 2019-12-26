@@ -37,13 +37,35 @@ app.post('/rezervisiVanredno', function(req, res){
         if (err)
             throw err;
 
-        var zauzecaJson = JSON.parse(data);
-        var novoZauzece = res.body;
-
+	    // Validacija
+        var zauzecaJson = JSON.parse(data);    
+        var novoZauzece = req.body;
         console.log(novoZauzece);
-        res.send(novoZauzece);
+        //console.log(zauzecaJson.vanredna);
+        if(zauzecaJson.vanredna.some(vanrednoZauzece => _.isEqualWith(vanrednoZauzece, novoZauzece, komparator))){
+            res.end("nmg jara");
+        }
+        else{
+            res.end("sector clear");
+        }
+    
     });
 });
+
+
+
+function komparator(objekatVanrednih, novoVanredno) {
+    //console.log("ŠTA JE OVOOOOOO:" + objekatVanrednih);
+    //console.log(novoVanredno);
+    var objekatVanrednoPocetak = parseInt(objekatVanrednih.pocetak.replace(':', ''));
+    var objekatVanrednoKraj = parseInt(objekatVanrednih.kraj.replace(':', ''));
+    var novoVanrednoPocetak = parseInt(novoVanredno.pocetak.replace(':', ''));
+    var novoVanrednoKraj = parseInt(novoVanredno.kraj.replace(':', ''));
+    
+    return (_.isEqual(objekatVanrednih.datum, novoVanredno.datum) && objekatVanrednih.naziv == novoVanredno.naziv 
+        && Math.max(objekatVanrednoPocetak, novoVanrednoPocetak) < Math.min(objekatVanrednoKraj, novoVanrednoKraj));
+}
+
 
 app.get('/osobe', function(req, res){
     res.sendFile(__dirname + "/public/html/osobe.html");
