@@ -15,6 +15,6 @@
   "homepage": "https://bitbucket.org/mand0ne/wt1918088#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "node": "^13.5.0"
+    "lodash": "^4.17.15"
   }
 }

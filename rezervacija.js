@@ -1,1 +1,0 @@
-Pozivi.ucitajZauzecaSaServera("/zauzeca.json");

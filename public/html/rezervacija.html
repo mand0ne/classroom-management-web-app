@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rezervacije</title>
+    <link rel="stylesheet" href="../css/meni.css">
+    <link rel="stylesheet" href="../css/rezervacija.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="meni">
+        <div class="logo">
+            <img src="../resources/logo.png" alt="Page logo">
+        </div>
+
+        <ul>
+            <li><a href="/pocetna">Početna</a></li>
+            <li><a href="/sale">Sale</a></li>
+            <li><a href="/unos">Unos</a></li>
+            <li><a href="/rezervacije">Rezervacije</a></li>
+            <li><a href="/osobe">Osobe</a></li>
+        </ul>
+    </div>
+
+    <br>
+
+    <div class="sadrzaj">
+        <form>
+            <div class="lbin">
+                <label>Sala: </label>
+                <select name="sale">
+                    <option value="0-01">0-01</option>
+                    <option value="0-02">0-02</option>
+                    <option value="0-03">0-03</option>
+                    <option value="0-04">0-04</option>
+                    <option value="0-05">0-05</option>
+                    <option value="1-01">1-01</option>
+                    <option value="1-02">1-02</option>
+                    <option value="1-03">1-03</option>
+                    <option value="1-04">1-04</option>
+                    <option value="1-05">1-05</option>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="EE1">EE1</option>
+                    <option value="EE2">EE2</option>
+                </select>
+            </div>
+
+
+            <div class="lbin">
+                <label>Periodično:</label>
+                <input type="checkbox" name="periodicno">
+            </div>
+
+            <div class="lbin">
+                <label>Početak: </label>
+                <input type="time" name="pocetak">
+            </div>
+
+            <div class="lbin">
+                <label>Kraj: </label>
+                <input type="time" name="kraj">
+            </div>
+
+        </form>
+
+        <p style="color: red" id="err"></p>
+
+        <div id="kalendar">
+            <div id="mjesec"></div>
+
+            <div class="sedmica">
+                <div>PON</div>
+                <div>UTO</div>
+                <div>SRI</div>
+                <div>ČET</div>
+                <div>PET</div>
+                <div>SUB</div>
+                <div>NED</div>
+            </div>
+
+            <div class="dani">
+            </div>
+
+            <div class="dugmad">
+                <button id="pret">Prethodni</button>
+                <button id="sljed">Sljedeći</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js-modules/kalendar.js" defer></script>
+    <script src="../js-modules/pozivi.js" defer></script>
+    <script src="../js-modules/rezervacija.js" defer></script>
+    
+</body>
+
+</html>
