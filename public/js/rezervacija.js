@@ -1,6 +1,5 @@
 Pozivi.ucitajZauzecaSaServera();
 
-// Funkcija za rezervaciju sale, poziva se kada se klikne dan na kalendaru
 window.onclick = event => {
 
     var kliknutiDan = parseInt(event.target.innerHTML);
@@ -8,18 +7,20 @@ window.onclick = event => {
     var trenutniPocetak = pocetakField.value;
     var trenutniKraj = krajField.value;
 
-    if (!isFinite(kliknutiDan) || kliknutiDan < 1 || kliknutiDan > 31 
-    || ![0, 1, 2, 3, 4, 5, 9, 10, 11].includes(Kalendar.trenutniMjesec()) 
+    if (event.target.tagName === "OPTION" || !isFinite(kliknutiDan) || kliknutiDan < 1 || kliknutiDan > 31 
     || !trenutniPocetak.length > 0 || !trenutniKraj.length > 0 || document.getElementById("err").innerHTML.length > 0)
         return;
-                
-    var trenutniDatum = new Date();
+    
+    var periodicno = document.querySelector('input[name=periodicno').checked;
+    if(periodicno && ![0, 1, 2, 3, 4, 5, 9, 10, 11].includes(Kalendar.trenutniMjesec()))
+        return;
+    
+    var semestarZauzeca = (Kalendar.trenutniMjesec() >= 1 && Kalendar.trenutniMjesec() <= 5) ? "ljetni" : "zimski";
 
-    console.log(trenutniKraj.substring(0, 2) + ":" + trenutniKraj.substring(3));
-    var izabraniDatum = new Date(trenutniDatum.getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
+    var izabraniDatum = new Date(new Date().getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
         trenutniPocetak.substring(0, 2), trenutniPocetak.substring(3));
 
-    if (izabraniDatum.getTime() <= trenutniDatum.getTime()) {
+    if (izabraniDatum.getTime() <= new Date().getTime()) {
         alert("Nema smisla rezervisati nešto što je već prošlo...");
         return;
     }
@@ -31,17 +32,9 @@ window.onclick = event => {
     } 
 
     var daniUSedmici = ["ponedjeljak", "utorak", "srijedu", "četvrtak", "petak", "subotu", "nedjelju"];
-    semestarZauzeca = (Kalendar.trenutniMjesec() >= 1 && Kalendar.trenutniMjesec() <= 5) ? "ljetni" : "zimski";
     var datumZauzeca = {dan : kliknutiDan, mjesec: Kalendar.trenutniMjesec(), godina: new Date().getFullYear()};
 
-    var odstupanje = parseInt(document.getElementById("kalendar").querySelector(".dani").firstElementChild.style.gridColumnStart) - 1;
-
-    kliknutiDan = (kliknutiDan % 7) + odstupanje - 1;
-    if (kliknutiDan === -1)
-        kliknutiDan = 6;
-
-    if (kliknutiDan >= odstupanje)
-        kliknutiDan = (kliknutiDan % 7);
+    var kliknutiDan = (new Date(new Date().getFullYear(), 11, 30).getDay() + 6) % 7;
 
     var periodicno = document.querySelector('input[name=periodicno').checked;
 
@@ -59,10 +52,8 @@ window.onclick = event => {
         //rezervisiPeriodicno(periodicnoZauzece);
     }
     else {
-        console.log("USLO 1 :" + kliknutiDan);
-            
         vanrednoZauzece = { datum: datumZauzeca, pocetak: trenutniPocetak, kraj: trenutniKraj, naziv: trenutnaSala, predavac: "Nebitno" };
-        console.log(vanrednoZauzece);
+        console.log("VANREDNO 1: " + JSON.stringify(vanrednoZauzece) + "\n");
         Pozivi.rezervisiNovoVanrednoZauzece(vanrednoZauzece);
     }
 }

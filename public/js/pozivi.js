@@ -1,9 +1,5 @@
 let Pozivi = (function() {   
 
-    //function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {  }
-
-
-    // ucitava podatke sa servera u modul Kalendar kad se otvori rezervacije.html
     function ucitajZauzecaSaServeraImpl() {
         console.log("POZVANO");
         var xhttp = new XMLHttpRequest();
@@ -22,12 +18,13 @@ let Pozivi = (function() {
     function rezervisiNovoVanrednoZauzeceImpl(vanredno) {
         var ajax = new XMLHttpRequest();
         
-        ajax.onreadystatechange = function() {// Anonimna funkcija
+        ajax.onreadystatechange = function() {
             if (ajax.readyState == 4 && ajax.status == 200){
                 console.log("AJAX RESPONSE TEXT JARA: \n" + ajax.responseText);
             }
         }
         
+        console.log("VANREDNO 2: " + JSON.stringify(vanredno) + "\n");;
         ajax.open("POST","/rezervisiVanredno",true);
         ajax.setRequestHeader("Content-Type", "application/json");
         ajax.send(JSON.stringify(vanredno));
