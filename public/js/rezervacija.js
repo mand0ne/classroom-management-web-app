@@ -21,12 +21,14 @@ window.onclick = event => {
     }
 
     var semestarZauzeca = (Kalendar.trenutniMjesec() >= 1 && Kalendar.trenutniMjesec() <= 5) ? "ljetni" : "zimski";
-    var izabraniDatum = new Date(new Date().getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
-        trenutniPocetak.substring(0, 2), trenutniPocetak.substring(3));
-
+    
     // KO HOCE NEK UKLJUCI I OVU VALIDACIJU
     // Uzmi trenutni datum i provjeri da li je uneseni datum vec prosao
     /* UNIX epoch komparacija
+
+    var izabraniDatum = new Date(new Date().getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
+        trenutniPocetak.substring(0, 2), trenutniPocetak.substring(3));
+        
     if (izabraniDatum.getTime() <= new Date().getTime()) {
         alert("Nema smisla rezervisati nešto što je već prošlo...");
         return;
