@@ -21,10 +21,10 @@ window.onclick = event => {
     }
 
     var semestarZauzeca = (Kalendar.trenutniMjesec() >= 1 && Kalendar.trenutniMjesec() <= 5) ? "ljetni" : "zimski";
-
     var izabraniDatum = new Date(new Date().getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
         trenutniPocetak.substring(0, 2), trenutniPocetak.substring(3));
 
+    // KO HOCE NEK UKLJUCI I OVU VALIDACIJU
     // Uzmi trenutni datum i provjeri da li je uneseni datum vec prosao
     /* UNIX epoch komparacija
     if (izabraniDatum.getTime() <= new Date().getTime()) {
@@ -37,14 +37,13 @@ window.onclick = event => {
     var dan = _kalendarRef.querySelector(".dani").querySelector("div:nth-child(" + kliknutiDan + ")");;
     if (window.getComputedStyle(dan, null).getPropertyValue("background-color") === "rgb(253, 98, 74)") {
         Pozivi.ucitajZauzecaSaServera();
-        alert("Izabrana sala je već rezervisana u tom periodu!");
+        alert("Izabrana sala je već zauzeta u tom periodu!");
         return;
     }
 
     var datumZauzeca = { dan: kliknutiDan, mjesec: Kalendar.trenutniMjesec(), godina: new Date().getFullYear() };
     var kliknutiDan = (new Date(datumZauzeca.godina, datumZauzeca.mjesec, kliknutiDan).getDay() + 6) % 7;
 
-    var daniUSedmici = ["ponedjeljak", "utorak", "srijedu", "četvrtak", "petak", "subotu", "nedjelju"];
     var poruka;
 
     if (periodicno)

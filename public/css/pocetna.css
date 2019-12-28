@@ -19,6 +19,23 @@
     width: 160px;
 }
 
+#pret {
+    margin-top: 10px;
+    margin-left: 39%;
+}
+
+#sljed {
+    margin-top: 10px;
+    margin-left: 15%;
+}
+
+button {
+    background-color: darkslateblue;
+    border: 2px solid green;
+    color: white;
+    text-align: center;
+}
+
 @media all and (min-width: 600px) {
     .meni ul li {
         display: inline;

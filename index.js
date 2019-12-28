@@ -4,6 +4,9 @@ const fs = require('fs');
 var _ = require('lodash');
 const app = express();
 
+const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
+const sale = ["0-01", "0-02", "0-03", "0-04", "0-05", "1-01", "1-02", "1-03", "1-04", "1-05", "A1", "A2", "A3", "EE1", "EE2"];
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
@@ -19,8 +22,6 @@ app.get('/zauzecaJSON', function (req, res) {
 app.post('/rezervisiVanredno', function (req, res) {
     try {
         novoZauzece = req.body;
-        const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
-        var sale = ["0-01", "0-02", "0-03", "0-04", "0-05", "1-01", "1-02", "1-03", "1-04", "1-05", "A1", "A2", "A3", "EE1", "EE2"];
 
         if (Object.keys(novoZauzece).length != 5 || novoZauzece.datum == null || Object.keys(novoZauzece.datum).length != 3 || novoZauzece.pocetak == null || novoZauzece.kraj == null || novoZauzece.naziv == null || novoZauzece.predavac == null)
             throw "Neispravan format JSON-a!";
@@ -115,8 +116,6 @@ function komparatorPeriodicnoVanredno(periodicno, vanredno) {
 app.post('/rezervisiPeriodicno', function (req, res) {
     try {
         novoZauzece = req.body;
-        const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
-        var sale = ["0-01", "0-02", "0-03", "0-04", "0-05", "1-01", "1-02", "1-03", "1-04", "1-05", "A1", "A2", "A3", "EE1", "EE2"];
 
         if (Object.keys(novoZauzece).length != 6 || novoZauzece.dan == null || novoZauzece.semestar == null
             || novoZauzece.pocetak == null || novoZauzece.kraj == null || novoZauzece.naziv == null || novoZauzece.predavac == null)
@@ -161,6 +160,30 @@ app.post('/rezervisiPeriodicno', function (req, res) {
     } catch (error) {
         res.status(400).send(error);
     }
+});
+
+app.get('/images', function (req, res) {
+
+    let slike = "";
+    let indexTrenutneSlike = req.query['trenutna'];
+
+    for (let i = 0; i < 3; i++) {
+        indexTrenutneSlike++;
+        if (fs.existsSync(__dirname + "/public/images/slika" + indexTrenutneSlike + ".jpg"))
+            slike += "<div><img src=\"/images/slika" + indexTrenutneSlike + ".jpg\" alt=\"Slika\"/></div>";
+        else {
+            res.status(202).send(slike);
+            return;
+        }
+    }
+
+    indexTrenutneSlike++;
+    if (!fs.existsSync(__dirname + "/public/images/slika" + indexTrenutneSlike + ".jpg")) {
+        res.status(202).send(slike);
+        return;
+    }
+
+    res.status(200).end(slike);
 });
 
 app.listen(8080);

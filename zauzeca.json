@@ -1,238 +1,417 @@
 {
     "vanredna": [
-      {
-        "datum": {
-          "dan": 8,
-          "mjesec": 0,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 8,
+                "mjesec": 0,
+                "godina": 2019
+            },
+            "pocetak": "12:45",
+            "kraj": "16:30",
+            "naziv": "EE1",
+            "predavac": "Nebitno"
         },
-        "pocetak": "12:45",
-        "kraj": "16:30",
-        "naziv": "EE1",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 21,
-          "mjesec": 9,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 21,
+                "mjesec": 9,
+                "godina": 2019
+            },
+            "pocetak": "17:00",
+            "kraj": "17:45",
+            "naziv": "A2",
+            "predavac": "Nebitno"
         },
-        "pocetak": "17:00",
-        "kraj": "17:45",
-        "naziv": "A2",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 1,
-          "mjesec": 10,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 1,
+                "mjesec": 10,
+                "godina": 2019
+            },
+            "pocetak": "13:00",
+            "kraj": "15:00",
+            "naziv": "1-01",
+            "predavac": "Nebitno"
         },
-        "pocetak": "13:00",
-        "kraj": "15:00",
-        "naziv": "1-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 29,
-          "mjesec": 10,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 29,
+                "mjesec": 10,
+                "godina": 2019
+            },
+            "pocetak": "16:00",
+            "kraj": "17:00",
+            "naziv": "1-01",
+            "predavac": "Nebitno"
         },
-        "pocetak": "16:00",
-        "kraj": "17:00",
-        "naziv": "1-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 31,
-          "mjesec": 11,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 31,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "16:00",
+            "kraj": "18:00",
+            "naziv": "1-02",
+            "predavac": "Nebitno"
         },
-        "pocetak": "16:00",
-        "kraj": "18:00",
-        "naziv": "1-02",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 27,
-          "mjesec": 11,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 27,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "16:00",
+            "kraj": "18:00",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
         },
-        "pocetak": "16:00",
-        "kraj": "18:00",
-        "naziv": "1-04",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 16,
-          "mjesec": 1,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 16,
+                "mjesec": 1,
+                "godina": 2019
+            },
+            "pocetak": "18:30",
+            "kraj": "19:05",
+            "naziv": "A3",
+            "predavac": "Nebitno"
         },
-        "pocetak": "18:30",
-        "kraj": "19:05",
-        "naziv": "A3",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 6,
-          "mjesec": 1,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 6,
+                "mjesec": 1,
+                "godina": 2019
+            },
+            "pocetak": "15:30",
+            "kraj": "18:00",
+            "naziv": "A3",
+            "predavac": "Nebitno"
         },
-        "pocetak": "15:30",
-        "kraj": "18:00",
-        "naziv": "A3",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 17,
-          "mjesec": 1,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 17,
+                "mjesec": 1,
+                "godina": 2019
+            },
+            "pocetak": "08:00",
+            "kraj": "10:00",
+            "naziv": "0-01",
+            "predavac": "Nebitno"
         },
-        "pocetak": "08:00",
-        "kraj": "10:00",
-        "naziv": "0-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 31,
-          "mjesec": 2,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 31,
+                "mjesec": 2,
+                "godina": 2019
+            },
+            "pocetak": "20:00",
+            "kraj": "22:00",
+            "naziv": "1-02",
+            "predavac": "Nebitno"
         },
-        "pocetak": "20:00",
-        "kraj": "22:00",
-        "naziv": "1-02",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 4,
-          "mjesec": 3,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 4,
+                "mjesec": 3,
+                "godina": 2019
+            },
+            "pocetak": "10:00",
+            "kraj": "12:00",
+            "naziv": "0-03",
+            "predavac": "Nebitno"
         },
-        "pocetak": "10:00",
-        "kraj": "12:00",
-        "naziv": "0-03",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 8,
-          "mjesec": 4,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 8,
+                "mjesec": 4,
+                "godina": 2019
+            },
+            "pocetak": "09:00",
+            "kraj": "11:00",
+            "naziv": "1-03",
+            "predavac": "Nebitno"
         },
-        "pocetak": "09:00",
-        "kraj": "11:00",
-        "naziv": "1-03",
-        "predavac": "Nebitno"
-      },
-      {
-        "datum": {
-          "dan": 8,
-          "mjesec": 5,
-          "godina": 2019
+        {
+            "datum": {
+                "dan": 8,
+                "mjesec": 5,
+                "godina": 2019
+            },
+            "pocetak": "12:00",
+            "kraj": "14:00",
+            "naziv": "0-05",
+            "predavac": "Nebitno"
         },
-        "pocetak": "12:00",
-        "kraj": "14:00",
-        "naziv": "0-05",
-        "predavac": "Nebitno"
-      }
+        {
+            "datum": {
+                "dan": 4,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 10,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 31,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "14:00",
+            "kraj": "15:00",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 25,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "17:00",
+            "kraj": "19:00",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 26,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "17:00",
+            "kraj": "19:00",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 14,
+                "mjesec": 10,
+                "godina": 2019
+            },
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 5,
+                "mjesec": 8,
+                "godina": 2019
+            },
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 23,
+                "mjesec": 2,
+                "godina": 2019
+            },
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 14,
+                "mjesec": 2,
+                "godina": 2019
+            },
+            "pocetak": "23:01",
+            "kraj": "23:59",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 1,
+                "mjesec": 10,
+                "godina": 2019
+            },
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 11,
+                "mjesec": 9,
+                "godina": 2019
+            },
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 1,
+                "mjesec": 11,
+                "godina": 2019
+            },
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        }
     ],
-    
     "periodicna": [
-      {
-        "dan": 1,
-        "semestar": "zimski",
-        "pocetak": "15:00",
-        "kraj": "18:00",
-        "naziv": "0-03",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 0,
-        "semestar": "zimski",
-        "pocetak": "12:00",
-        "kraj": "15:00",
-        "naziv": "0-05",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 1,
-        "semestar": "zimski",
-        "pocetak": "20:00",
-        "kraj": "22:00",
-        "naziv": "1-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 6,
-        "semestar": "zimski",
-        "pocetak": "21:00",
-        "kraj": "23:00",
-        "naziv": "1-04",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 5,
-        "semestar": "zimski",
-        "pocetak": "21:00",
-        "kraj": "22:00",
-        "naziv": "A3",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 6,
-        "semestar": "ljetni",
-        "pocetak": "14:30",
-        "kraj": "15:30",
-        "naziv": "0-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 3,
-        "semestar": "ljetni",
-        "pocetak": "16:00",
-        "kraj": "18:30",
-        "naziv": "0-01",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 4,
-        "semestar": "ljetni",
-        "pocetak": "12:40",
-        "kraj": "14:40",
-        "naziv": "0-02",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 2,
-        "semestar": "ljetni",
-        "pocetak": "21:10",
-        "kraj": "22:10",
-        "naziv": "1-03",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 2,
-        "semestar": "ljetni",
-        "pocetak": "20:30",
-        "kraj": "21:45",
-        "naziv": "EE2",
-        "predavac": "Nebitno"
-      },
-      {
-        "dan": 3,
-        "semestar": "ljetni",
-        "pocetak": "09:00",
-        "kraj": "13:00",
-        "naziv": "A1",
-        "predavac": "Nebitno"
-      }
+        {
+            "dan": 1,
+            "semestar": "zimski",
+            "pocetak": "15:00",
+            "kraj": "18:00",
+            "naziv": "0-03",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 0,
+            "semestar": "zimski",
+            "pocetak": "12:00",
+            "kraj": "15:00",
+            "naziv": "0-05",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 1,
+            "semestar": "zimski",
+            "pocetak": "20:00",
+            "kraj": "22:00",
+            "naziv": "1-01",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 6,
+            "semestar": "zimski",
+            "pocetak": "21:00",
+            "kraj": "23:00",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 5,
+            "semestar": "zimski",
+            "pocetak": "21:00",
+            "kraj": "22:00",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 6,
+            "semestar": "ljetni",
+            "pocetak": "14:30",
+            "kraj": "15:30",
+            "naziv": "0-01",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 3,
+            "semestar": "ljetni",
+            "pocetak": "16:00",
+            "kraj": "18:30",
+            "naziv": "0-01",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 4,
+            "semestar": "ljetni",
+            "pocetak": "12:40",
+            "kraj": "14:40",
+            "naziv": "0-02",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 2,
+            "semestar": "ljetni",
+            "pocetak": "21:10",
+            "kraj": "22:10",
+            "naziv": "1-03",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 2,
+            "semestar": "ljetni",
+            "pocetak": "20:30",
+            "kraj": "21:45",
+            "naziv": "EE2",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 3,
+            "semestar": "ljetni",
+            "pocetak": "09:00",
+            "kraj": "13:00",
+            "naziv": "A1",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 3,
+            "semestar": "ljetni",
+            "pocetak": "08:01",
+            "kraj": "22:01",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 0,
+            "semestar": "ljetni",
+            "pocetak": "22:00",
+            "kraj": "23:30",
+            "naziv": "1-04",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 2,
+            "semestar": "zimski",
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 0,
+            "semestar": "zimski",
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 3,
+            "semestar": "zimski",
+            "pocetak": "08:08",
+            "kraj": "20:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        },
+        {
+            "dan": 5,
+            "semestar": "zimski",
+            "pocetak": "08:08",
+            "kraj": "18:08",
+            "naziv": "A3",
+            "predavac": "Nebitno"
+        }
     ]
-  }
+}
