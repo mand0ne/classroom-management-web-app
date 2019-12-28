@@ -1,10 +1,10 @@
-let Pozivi = (function() {   
+let Pozivi = (function () {
 
     function ucitajZauzecaSaServeraImpl() {
         console.log("POZVANO");
         var xhttp = new XMLHttpRequest();
-        
-        xhttp.onreadystatechange = function() {
+
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 zauzecaJson = JSON.parse(xhttp.responseText);
                 Kalendar.ucitajPodatke(zauzecaJson.periodicna, zauzecaJson.vanredna);
@@ -14,25 +14,59 @@ let Pozivi = (function() {
         xhttp.open("GET", "/zauzecaJSON", true);
         xhttp.send();
     }
-    
+
     function rezervisiNovoVanrednoZauzeceImpl(vanredno) {
-        var ajax = new XMLHttpRequest();
-        
-        ajax.onreadystatechange = function() {
-            if (ajax.readyState == 4 && ajax.status == 200){
-                console.log("AJAX RESPONSE TEXT JARA: \n" + ajax.responseText);
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.responseType = "json";    // iz index.js vracamo JSON
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 400){
+                    window.alert(xhttp.response);
+                    return;
+                }
+                
+                if (xhttp.status == 403)
+                    window.alert("Rezervaciju nije moguce spasiti. Postoji preklapanje.");
+
+                var zauzeca = xhttp.response;
+                Kalendar.ucitajPodatke(zauzeca.periodicna, zauzeca.vanredna);
             }
         }
-        
-        console.log("VANREDNO 2: " + JSON.stringify(vanredno) + "\n");;
-        ajax.open("POST","/rezervisiVanredno",true);
-        ajax.setRequestHeader("Content-Type", "application/json");
-        ajax.send(JSON.stringify(vanredno));
+
+        xhttp.open("POST", "/rezervisiVanredno", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(vanredno));
     }
 
-    return {    
+    function rezervisiNovoPeriodicnoZauzeceImpl(periodicno) {
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.responseType = "json";    // iz index.js vracamo JSON
+        xhttp.onreadystatechange = function () {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 400){
+                    window.alert(xhttp.response);
+                    return;
+                }
+                
+                if (xhttp.status == 403)
+                    window.alert("Rezervaciju nije moguce spasiti. Postoji preklapanje.");
+
+                var zauzeca = xhttp.response;
+                Kalendar.ucitajPodatke(zauzeca.periodicna, zauzeca.vanredna);
+            }
+        }
+
+        xhttp.open("POST", "/rezervisiPeriodicno", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(periodicno));
+    }
+
+    return {
         ucitajZauzecaSaServera: ucitajZauzecaSaServeraImpl,
-        rezervisiNovoVanrednoZauzece: rezervisiNovoVanrednoZauzeceImpl
+        rezervisiNovoVanrednoZauzece: rezervisiNovoVanrednoZauzeceImpl,
+        rezervisiNovoPeriodicnoZauzece: rezervisiNovoPeriodicnoZauzeceImpl
         //obojiZauzeca: obojiZauzecaImpl,        
         //ucitajPodatke: ucitajPodatkeImpl,        
         //iscrtajKalendar: iscrtajKalendarImpl    
