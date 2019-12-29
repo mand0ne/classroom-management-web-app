@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const chokidar = require('chokidar');
 var _ = require('lodash');
-const app = express();
+var kesiraneSlikeServer = [];
 
+const app = express();
 const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
 const sale = ["0-01", "0-02", "0-03", "0-04", "0-05", "1-01", "1-02", "1-03", "1-04", "1-05", "A1", "A2", "A3", "EE1", "EE2"];
 
@@ -163,22 +165,20 @@ app.post('/rezervisiPeriodicno', function (req, res) {
 });
 
 app.get('/images', function (req, res) {
-
     let slike = "";
     let indexTrenutneSlike = req.query['trenutna'];
-
+    
     for (let i = 0; i < 3; i++) {
-        indexTrenutneSlike++;
-        if (fs.existsSync(__dirname + "/public/images/slika" + indexTrenutneSlike + ".jpg"))
-            slike += "<div><img src=\"/images/slika" + indexTrenutneSlike + ".jpg\" alt=\"Slika\"/></div>";
+        if (indexTrenutneSlike < kesiraneSlikeServer.length)
+            slike += "<div><img src=\"/images/" + kesiraneSlikeServer[indexTrenutneSlike] + "\" alt=\"Slika\"/></div>";
         else {
             res.status(202).send(slike);
             return;
         }
+        indexTrenutneSlike++;
     }
 
-    indexTrenutneSlike++;
-    if (!fs.existsSync(__dirname + "/public/images/slika" + indexTrenutneSlike + ".jpg")) {
+    if (indexTrenutneSlike >= kesiraneSlikeServer.length) {
         res.status(202).send(slike);
         return;
     }
@@ -187,3 +187,43 @@ app.get('/images', function (req, res) {
 });
 
 app.listen(8080);
+
+fs.readdir(__dirname + "/public/images/", (err, files) => {
+    if(err)
+        throw err;
+
+    kesiraneSlikeServer = [];
+    files.forEach(file => {
+        kesiraneSlikeServer.push(file);
+    });
+});
+
+// Initialize watcher.
+const watcher = chokidar.watch(__dirname + '/public/images', {
+    ignored: /(^|[\/\\])\../, // ignore dotfiles
+    persistent: true,
+    ignoreInitial: true
+});
+
+// Something to use when events are received.
+const log = console.log.bind(console);
+// Add event listeners.
+watcher
+    .on('add', path => {
+        var putanja = path.split('\\');
+        var slika = putanja[putanja.length - 1];
+        kesiraneSlikeServer.push(slika);
+        log(`File ${path} has been added`)
+    }).on('unlink', path => {
+        log(`File ${path} has been deleted. Caching again.`)
+
+        fs.readdir(__dirname + "/public/images/", (err, files) => {
+            if(err)
+                throw err;
+        
+            kesiraneSlikeServer = [];
+            files.forEach(file => {
+                kesiraneSlikeServer.push(file);
+            });
+        });
+    });

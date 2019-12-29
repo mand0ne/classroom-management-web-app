@@ -25,7 +25,6 @@ window.onclick = event => {
     // KO HOCE NEK UKLJUCI I OVU VALIDACIJU
     // Uzmi trenutni datum i provjeri da li je uneseni datum vec prosao
     /* UNIX epoch komparacija
-
     var izabraniDatum = new Date(new Date().getFullYear(), Kalendar.trenutniMjesec(), kliknutiDan,
         trenutniPocetak.substring(0, 2), trenutniPocetak.substring(3));
         
