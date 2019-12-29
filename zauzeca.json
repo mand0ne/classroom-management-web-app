@@ -186,6 +186,17 @@
             "kraj": "14:07",
             "naziv": "A3",
             "predavac": "Nebitno"
+        },
+        {
+            "datum": {
+                "dan": 4,
+                "mjesec": 11,
+                "godina": 2025
+            },
+            "pocetak": "02:05",
+            "kraj": "14:07",
+            "naziv": "EE1",
+            "predavac": "Nebitno"
         }
     ],
     "periodicna": [

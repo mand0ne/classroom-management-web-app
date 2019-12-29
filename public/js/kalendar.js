@@ -38,7 +38,7 @@ let Kalendar = (function () {
 
         var dani = kalendarRef.querySelector(".dani").children;
 
-        if (pocetak == '' || kraj == '' || _vanrednaZauzeca.length == 0 && _periodicnaZauzeca.length == 0) {
+        if (pocetak == '' || kraj == '') {
             for (let i = 0; i < dani.length; i++)
                 dani[i].className = '';
 
@@ -65,7 +65,8 @@ let Kalendar = (function () {
             var vzPocetakInt = parseInt(vz.pocetak.replace(':', ''));
             var vzKrajInt = parseInt(vz.kraj.replace(':', ''));
 
-            if (vz.datum.getMonth() == mjesec && vz.datum.getFullYear == new Date().getFullYear && vz.naziv == sala
+
+            if (vz.datum.getMonth() == mjesec && vz.datum.getFullYear() == new Date().getFullYear() && vz.naziv == sala
                 && Math.max(pocetakInt, vzPocetakInt) < Math.min(krajInt, vzKrajInt))
                 dani[vz.datum.getDate() - 1].className = 'zauzeta';
         });
