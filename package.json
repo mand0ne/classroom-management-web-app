@@ -1,0 +1,21 @@
+{
+  "name": "wt1918088",
+  "version": "1.0.3",
+  "description": "spirala3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mand0ne@bitbucket.org/mand0ne/wt1918088.git"
+  },
+  "author": "AM",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mand0ne/wt1918088#readme",
+  "dependencies": {
+    "chokidar": "^3.3.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15"
+  }
+}
