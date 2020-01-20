@@ -3,7 +3,7 @@ var dugmad = document.getElementsByClassName('dugmad')[0].children;
 var form = document.querySelector(".sadrzaj").firstElementChild;
 var pocetakField = form.querySelector('input[name=pocetak');
 var krajField = form.querySelector('input[name=kraj');
-var salaField = form.querySelector("select");
+var salaField = form.querySelector("#salaSelect");
 
 function PeriodicnoZauzece(dan, semestar, pocetak, kraj, naziv, predavac) {
     this.dan = dan;
@@ -30,6 +30,7 @@ let Kalendar = (function () {
     const _months = ["Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Oktobar", "Novembar", "Decembar"];
 
     function obojiZauzecaImpl(kalendarRef, mjesec, sala, pocetak, kraj) {
+
         const regex = /^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/;
 
         if (kalendarRef == null || kalendarRef == undefined || mjesec < 0 || mjesec > 11 || sala == null || sala == undefined
@@ -47,9 +48,9 @@ let Kalendar = (function () {
 
         document.getElementById("err").innerHTML = '';
 
-        if (parseInt(pocetak.replace(':', '')) >= parseInt(kraj.replace(':', ''))){
+        if (parseInt(pocetak.replace(':', '')) >= parseInt(kraj.replace(':', ''))) {
             document.getElementById("err").innerHTML = "Kraj mora biti kasnije od početka!"
-            return;    
+            return;
         }
 
         for (let i = 0; i < dani.length; i++)
@@ -67,8 +68,9 @@ let Kalendar = (function () {
 
 
             if (vz.datum.getMonth() == mjesec && vz.datum.getFullYear() == new Date().getFullYear() && vz.naziv == sala
-                && Math.max(pocetakInt, vzPocetakInt) < Math.min(krajInt, vzKrajInt))
+                && Math.max(pocetakInt, vzPocetakInt) < Math.min(krajInt, vzKrajInt)) {
                 dani[vz.datum.getDate() - 1].className = 'zauzeta';
+            }
         });
 
         _periodicnaZauzeca.forEach((vz) => {
@@ -98,14 +100,13 @@ let Kalendar = (function () {
     }
 
     function ucitajPodatkeImpl(periodicna, vanredna) {
-        for(let i = 0; i < vanredna.length; i++){
+        for (let i = 0; i < vanredna.length; i++) {
             var vzDatum = vanredna[i].datum;
             vanredna[i].datum = new Date(vzDatum.godina, vzDatum.mjesec, vzDatum.dan);
         }
 
         _periodicnaZauzeca = periodicna;
         _vanrednaZauzeca = vanredna;
-
         Kalendar.obojiZauzeca(_kalendarRef, _trenutniMjesec, salaField.value, pocetakField.value, krajField.value);
     }
 

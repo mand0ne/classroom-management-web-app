@@ -1,4 +1,6 @@
 Pozivi.ucitajZauzecaSaServera();
+Pozivi.ucitajOsoblja();
+var osobaField = form.querySelector("#osobaSelect");
 
 window.onclick = event => {
 
@@ -15,13 +17,13 @@ window.onclick = event => {
     // Da li je mjesec uopste za vrijeme akademske godine?
     // Za periodicno nema smisla da ne bude, za vanredno moze
     var periodicno = document.querySelector('input[name=periodicno').checked;
-    if (periodicno && ![0, 1, 2, 3, 4, 5, 9, 10, 11].includes(Kalendar.trenutniMjesec())){
+    if (periodicno && ![0, 1, 2, 3, 4, 5, 9, 10, 11].includes(Kalendar.trenutniMjesec())) {
         alert("Periodicno zauzece mora biti tokom akademske godine!");
         return;
     }
 
     var semestarZauzeca = (Kalendar.trenutniMjesec() >= 1 && Kalendar.trenutniMjesec() <= 5) ? "ljetni" : "zimski";
-    
+
     // KO HOCE NEK UKLJUCI I OVU VALIDACIJU
     // Uzmi trenutni datum i provjeri da li je uneseni datum vec prosao
     /* UNIX epoch komparacija
@@ -56,11 +58,11 @@ window.onclick = event => {
         return;
 
     if (periodicno) {
-        periodicnoZauzece = { dan: kliknutiDan, semestar: semestarZauzeca, pocetak: trenutniPocetak, kraj: trenutniKraj, naziv: trenutnaSala, predavac: "Nebitno" };
-        Pozivi.rezervisiNovoPeriodicnoZauzece(periodicnoZauzece);
+        periodicnoZauzece = { dan: kliknutiDan, semestar: semestarZauzeca, pocetak: trenutniPocetak, kraj: trenutniKraj, naziv: trenutnaSala, predavac: osobaField.value };
+        Pozivi.rezervisiNovoPeriodicnoZauzece(periodicnoZauzece); // trenutno se koristi mySQL baza, prethodno je bilo preko datoteke zauzeca.json
     }
     else {
-        vanrednoZauzece = { datum: datumZauzeca, pocetak: trenutniPocetak, kraj: trenutniKraj, naziv: trenutnaSala, predavac: "Nebitno" };
-        Pozivi.rezervisiNovoVanrednoZauzece(vanrednoZauzece);
+        vanrednoZauzece = { datum: datumZauzeca, pocetak: trenutniPocetak, kraj: trenutniKraj, naziv: trenutnaSala, predavac: osobaField.value };
+        Pozivi.rezervisiNovoVanrednoZauzece(vanrednoZauzece); // trenutno se koristi mySQL baza, prethodno je bilo preko datoteke zauzeca.json
     }
 }

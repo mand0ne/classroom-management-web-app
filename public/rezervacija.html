@@ -3,8 +3,8 @@
 
 <head>
     <title>Rezervacije</title>
-    <link rel="stylesheet" href="/css/meni.css">
-    <link rel="stylesheet" href="/css/rezervacija.css">
+    <link rel="stylesheet" href="css/meni.css">
+    <link rel="stylesheet" href="css/rezervacija.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -13,7 +13,7 @@
 
     <div class="meni">
         <div class="logo">
-            <img src="/logo.png" alt="Page logo">
+            <img src="logo.png" alt="Page logo">
         </div>
 
         <ul>
@@ -21,7 +21,7 @@
             <li><a href="sale.html">Sale</a></li>
             <li><a href="unos.html">Unos</a></li>
             <li><a href="rezervacija.html">Rezervacije</a></li>
-            <li><a href="osobe.html">Osobe</a></li>
+            <li><a href="osobe.html">Osoblje</a></li>
         </ul>
     </div>
 
@@ -31,7 +31,7 @@
         <form>
             <div class="lbin">
                 <label>Sala: </label>
-                <select name="sale">
+                <select id="salaSelect" name="sale">
                     <option value="0-01">0-01</option>
                     <option value="0-02">0-02</option>
                     <option value="0-03">0-03</option>
@@ -42,6 +42,8 @@
                     <option value="1-03">1-03</option>
                     <option value="1-04">1-04</option>
                     <option value="1-05">1-05</option>
+                    <option value="1-11">1-11</option>
+                    <option value="1-15">1-15</option>
                     <option value="A1">A1</option>
                     <option value="A2">A2</option>
                     <option value="A3">A3</option>
@@ -50,6 +52,11 @@
                 </select>
             </div>
 
+            <div class="lbin">
+                <label>Osoblje: </label>
+                <select id="osobaSelect" name="osoblje">
+                </select>
+            </div>
 
             <div class="lbin">
                 <label>Periodično:</label>
@@ -96,7 +103,7 @@
     <script src="/js/kalendar.js" defer></script>
     <script src="/js/pozivi.js" defer></script>
     <script src="/js/rezervacija.js" defer></script>
-    
+
 </body>
 
 </html>
