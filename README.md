@@ -1,3 +1,1 @@
-# Web tehnologije 2019/2020
-## Anel Mandal [18088]
-
+Za pokretanje testova, u glavnom direktoriju pokrenuti komandu mocha.

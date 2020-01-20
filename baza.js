@@ -14,10 +14,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // [IMPORT MODELA]
-db.osoblje = sequelize.import(__dirname + '/osoblje.js');
-db.rezervacija = sequelize.import(__dirname + '/rezervacija.js');
-db.sala = sequelize.import(__dirname + '/sala.js');
-db.termin = sequelize.import(__dirname + '/termin.js');
+db.osoblje = sequelize.import(__dirname + '/baza/osoblje.js');
+db.rezervacija = sequelize.import(__dirname + '/baza/rezervacija.js');
+db.sala = sequelize.import(__dirname + '/baza/sala.js');
+db.termin = sequelize.import(__dirname + '/baza/termin.js');
 
 // [RELACIJE]
 // Veza 1-n (osoblje - rezervacija)
