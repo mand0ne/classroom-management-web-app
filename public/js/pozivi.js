@@ -39,7 +39,7 @@ let Pozivi = (function () {
             }
         };
 
-        xhttp.open("GET", "/zauzecaDB", true);
+        xhttp.open("GET", "/zauzeca", true);
         xhttp.send();
     }
 
@@ -71,22 +71,25 @@ let Pozivi = (function () {
 
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4) {
+
                 if (xhttp.status == 400) {
                     window.alert(xhttp.response);
                     return;
                 }
 
-                if (xhttp.status == 403)
+                var zauzeca = xhttp.response;
+
+                if (xhttp.status == 403) {
                     window.alert(prikaziAlert(false, vanredno, xhttp.response.zauzeceKojeSprjecava));
+                    zauzeca = zauzeca.svjezaZauzeca;
+                }
 
-                var zauzeca = xhttp.response.svjezaZauzeca;
                 if (zauzeca != null && zauzeca != undefined)
-
                     Kalendar.ucitajPodatke(zauzeca.periodicna, zauzeca.vanredna);
             }
         }
 
-        xhttp.open("POST", "/rezervisiVanrednoDB", true);
+        xhttp.open("POST", "/rezervisiVanredno", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send(JSON.stringify(vanredno));
     }
@@ -103,17 +106,19 @@ let Pozivi = (function () {
                     return;
                 }
 
-                if (xhttp.status == 403)
+                var zauzeca = xhttp.response;
+
+                if (xhttp.status == 403) {
                     window.alert(prikaziAlert(true, periodicno, xhttp.response.zauzeceKojeSprjecava));
+                    zauzeca = zauzeca.svjezaZauzeca;
+                }
 
-
-                var zauzeca = xhttp.response.svjezaZauzeca;
                 if (zauzeca != null && zauzeca != undefined)
                     Kalendar.ucitajPodatke(zauzeca.periodicna, zauzeca.vanredna);
             }
         }
 
-        xhttp.open("POST", "/rezervisiPeriodicnoDB", true);
+        xhttp.open("POST", "/rezervisiPeriodicno", true);
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.send(JSON.stringify(periodicno));
     }

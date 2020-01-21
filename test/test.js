@@ -47,7 +47,7 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
     });
 
     it("GET /zauzecaDB treba vraca status kod 200", function (done) {
-        api.get('/zauzecaDB')
+        api.get('/zauzeca')
             .set('Accept', 'application/json')
             .expect(200)
             .expect(function (res) {
@@ -64,7 +64,7 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
     });
 
     it("Novo zauzece se treba ispravno dodati i azurirati prethodna zauzeca", function (done) {
-        api.post("/rezervisiVanrednoDB")
+        api.post("/rezervisiVanredno")
             .send(novoZauzece)
             .expect(200)
             .expect(function (res) {
@@ -78,7 +78,7 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
     });
 
     it("Drugi profesor ne moze zauzeti vec postojece zauzece", function (done) {
-        api.post("/rezervisiVanrednoDB")
+        api.post("/rezervisiVanredno")
             .send(novoZauzeceDrugiProfesor)
             .expect(403)
             .expect(function (res) {
@@ -143,7 +143,7 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
 
     it("Periodicno zauzece ponedjeljkom ne moze. Sala zauzeta 20.01. u tom terminu", function (done) {
         supertest(app)
-            .post("/rezervisiPeriodicnoDB")
+            .post("/rezervisiPeriodicno")
             .send(periodicnoZauzece1)
             .expect(403)
             .expect(function (res) {
@@ -158,7 +158,7 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
 
     it("Novo periodicno zauzece utorkom se ispravno dodaje", function (done) {
         supertest(app)
-            .post("/rezervisiPeriodicnoDB")
+            .post("/rezervisiPeriodicno")
             .send(periodicnoZauzece2)
             .expect(200)
             .expect(function (res) {

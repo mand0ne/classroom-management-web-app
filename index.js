@@ -141,17 +141,8 @@ app.get('/', function (req, res) {
     res.status(200).sendFile(__dirname + "/public/pocetna.html");
 });
 
-app.get("/testiranjeMoche", function (req, res) {
-    res.sendStatus(203);
-});
-
-// GET localhost:8080/zauzecaJSON
-app.get('/zauzecaJSON', function (req, res) {
-    resolve(res.status(200).sendFile(__dirname + "/zauzeca.json"));
-});
-
-// GET localhost:8080/zauzecaDB
-app.get('/zauzecaDB', function (req, res) {
+// GET localhost:8080/zauzeca
+app.get('/zauzeca', function (req, res) {
 
     db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
         // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
@@ -203,8 +194,8 @@ app.get('/images', function (req, res) {
 
 
 
-// POST localhost:8080/rezervisiPeriodicnoDB
-app.post('/rezervisiPeriodicnoDB', function (req, res) {
+// POST localhost:8080/rezervisiPeriodicno
+app.post('/rezervisiPeriodicno', function (req, res) {
 
     db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
 
@@ -274,48 +265,9 @@ app.post('/rezervisiPeriodicnoDB', function (req, res) {
     }).catch(err => { console.log(err); });
 });
 
-// Cuvanje rezervacija putem zauzeca.json, obsolete
-app.post('/rezervisiPeriodicnoJSON', function (req, res) {
-    try {
-        novoZauzece = req.body;
 
-        validirajPeriodicno(novoZauzece);
-
-        fs.readFile(__dirname + '/zauzeca.json', (err, data) => {
-            if (err)
-                throw err;
-
-            // Validacija
-            var zauzecaJson = JSON.parse(data);
-            var novoZauzece = req.body; // moze zbog bodyParser.json()
-
-            // Provjera dostupnosti uz Lodash
-            if (zauzecaJson.vanredna.some(vanrednoZauzece => _.isEqualWith(novoZauzece, vanrednoZauzece, komparatorPeriodicnoVanredno)) ||
-                zauzecaJson.periodicna.some(periodicnoZauzece => _.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicna))) {
-
-                res.status(403);
-            }
-            else {
-                zauzecaJson.periodicna.push(novoZauzece);
-                fs.writeFile(__dirname + "/zauzeca.json", JSON.stringify(zauzecaJson), function (err) {
-                    if (err)
-                        throw err;
-
-                    res.status(200);
-                });
-            }
-
-            res.send(zauzecaJson);
-        });
-    } catch (error) {
-        res.status(400).send(error);
-    }
-});
-
-
-
-// POST localhost:8080/rezervisiVanrednoDB
-app.post('/rezervisiVanrednoDB', function (req, res) {
+// POST localhost:8080/rezervisiVanredno
+app.post('/rezervisiVanredno', function (req, res) {
     db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
 
         try {
@@ -385,68 +337,41 @@ app.post('/rezervisiVanrednoDB', function (req, res) {
     }).catch(err => { console.log(err); });
 });
 
-// Cuvanje rezervacija putem zauzeca.json, obsolete
-app.post('/rezervisiVanrednoJSON', function (req, res) {
-    try {
-        novoZauzece = req.body;
-        validirajVanredno(novoZauzece);
-
-        fs.readFile(__dirname + '/zauzeca.json', (err, data) => {
-            if (err)
-                throw err;
-
-            // Validacija
-            var zauzecaJson = JSON.parse(data);
-            var novoZauzece = req.body; // moze zbog bodyParser.json()
-
-            // Provjera dostupnosti uz Lodash
-            if (zauzecaJson.vanredna.some(vanrednoZauzece => _.isEqualWith(vanrednoZauzece, novoZauzece, komparatorVanredna)) ||
-                zauzecaJson.periodicna.some(periodicnoZauzece => _.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicnoVanredno))) {
-
-                res.status(403);
-            }
-            else {
-                zauzecaJson.vanredna.push(novoZauzece);
-                fs.writeFile(__dirname + "/zauzeca.json", JSON.stringify(zauzecaJson), function (err) {
-                    if (err)
-                        throw err;
-
-                    res.status(200);
-                });
-            }
-
-            res.send(zauzecaJson);
-        });
-    } catch (error) {
-        res.status(400).send(error);
-    }
-});
-
-
-// Dohvati informacije o trenutim lokacijama (sala/kancelarija) osoblja
 app.get('/rezervacijeOsoba', function (req, res) {
     var today = new Date();
     var trenutniDatum = today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
     var trenutniDan = (today.getDay() + 6) % 7;
     var trenutnoVrijeme = parseInt(today.getHours().toString() + today.getMinutes().toString());
 
-    db.sequelize.query("SELECT o.id, o.ime as 'ime', o.prezime as 'prezime', o.uloga as 'uloga', if( CAST(TIME_FORMAT(t.pocetak, '%H%i') AS UNSIGNED) <= ? AND CAST(TIME_FORMAT(t.kraj, '%H%i') AS UNSIGNED) >= ? AND ((t.datum IS NOT NULL  AND t.datum = ?) OR (t.dan IS NOT NULL AND t.dan = ?)), s.naziv, 'kancelariji') as 'naziv' FROM osobljes o, salas s, termins t, rezervacijas r WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id",
-        { replacements: [trenutnoVrijeme, trenutnoVrijeme, trenutniDatum, trenutniDan], type: db.Sequelize.QueryTypes.SELECT }).then(osobeKojeSuRezervisale => {
-            var idOsobaKojiSuRezervisali = "(";
-            for (i in osobeKojeSuRezervisale)
-                idOsobaKojiSuRezervisali += osobeKojeSuRezervisale[i].id + ",";
+    console.log(trenutniDan);
+    db.sequelize.query("SELECT o.ime as 'ime', o.prezime as 'prezime', o.uloga as 'uloga', s.naziv as 'naziv' " +
+        "FROM osobljes o, salas s, termins t, rezervacijas r " +
+        "WHERE r.termin = t.id and r.sala = s.id and r.osoba = o.id and TIME_FORMAT(t.pocetak, '%H%i') <= ? and TIME_FORMAT(t.kraj, '%H%i') >= ? " +
+        "AND ((datum IS NOT NULL AND datum = ?)  OR (dan IS NOT NULL AND dan = ?))",
+        { replacements: [trenutnoVrijeme, trenutnoVrijeme, trenutniDatum, trenutniDan], type: db.sequelize.QueryTypes.SELECT })
+        .then(osobeKojeSuRezervisale => {
+            console.log(osobeKojeSuRezervisale);
+            db.sequelize.query("SELECT ime as 'ime', prezime as 'prezime', uloga as 'uloga', 'kancelariji' as 'naziv' FROM osobljes",
+                { type: db.sequelize.QueryTypes.SELECT })
+                .then(sveOsobe => {
 
-            idOsobaKojiSuRezervisali = idOsobaKojiSuRezervisali.slice(0, -1);
-            idOsobaKojiSuRezervisali += ")";
+                    for (let i = 0; i < sveOsobe.length; i++) {
+                        var x = sveOsobe[i];
+                        var osobaX = x.uloga + " " + x.ime + " " + x.prezime;
 
-            db.sequelize.query("SELECT id, ime, prezime, uloga, 'kancelariji' as 'naziv' FROM osobljes WHERE id NOT IN " + idOsobaKojiSuRezervisali, { type: db.Sequelize.QueryTypes.SELECT }).then(
-                osobeBezRezervacije => {
-                    osobeKojeSuRezervisale = [...osobeKojeSuRezervisale, ...osobeBezRezervacije];
-                    res.status(200).send(osobeKojeSuRezervisale);
-                }
-            ).catch(err => { res.sendStatus(400); console.log(err); });
+                        for (let j = 0; j < osobeKojeSuRezervisale.length; j++) {
+                            var y = osobeKojeSuRezervisale[j];
+                            var osobaY = y.uloga + " " + y.ime + " " + y.prezime;
 
-        }).catch(err => { res.sendStatus(400); console.log(err); });
+                            if (osobaX == osobaY)
+                                sveOsobe[i].naziv = y.naziv;
+                        }
+                    }
+
+                    res.status(200).send(sveOsobe);
+                }).catch(err => { res.sendStatus(400); console.log(err); });;
+
+        }).catch(err => { res.sendStatus(400); console.log(err); });;
 });
 
 

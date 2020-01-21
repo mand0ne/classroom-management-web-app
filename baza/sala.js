@@ -8,10 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         naziv: {
             type: DataTypes.STRING,
             unique: true,
-            allowNull: false,
-            validate: {
-                is: /\b[0-2]-[0-1][0-6]\b/
-            }
+            allowNull: false
         }
     }, {
         sequelize,
