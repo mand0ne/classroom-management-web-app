@@ -30,11 +30,12 @@ let Pozivi = (function () {
 
     function ucitajZauzecaSaServeraImpl() {
         var xhttp = new XMLHttpRequest();
+        xhttp.responseType = "json";    // iz index.js vracamo JSON
 
         xhttp.onreadystatechange = function () {
 
             if (this.readyState == 4 && this.status == 200) {
-                zauzecaJson = JSON.parse(xhttp.responseText);
+                zauzecaJson = xhttp.responseText;
                 Kalendar.ucitajPodatke(zauzecaJson.periodicna, zauzecaJson.vanredna);
             }
         };
@@ -45,10 +46,11 @@ let Pozivi = (function () {
 
     function ucitajOsobljaImpl() {
         var xhttp = new XMLHttpRequest();
+        xhttp.responseType = "json";    // iz index.js vracamo JSON
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                let osobljeJson = JSON.parse(xhttp.responseText);
+                let osobljeJson = xhttp.response;
                 let osobljeForm = form.querySelector("#osobaSelect");
                 let osobljeFormHtml = '';
 
@@ -145,14 +147,14 @@ let Pozivi = (function () {
 
 
     function ucitajRezervacijeOsobaImpl() {
-
         var xhttp = new XMLHttpRequest();
+        xhttp.responseType = "json";    // iz index.js vracamo JSON
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
 
                 if (xhttp.status == 200) {
-                    let podaci = JSON.parse(xhttp.responseText);
+                    let podaci = xhttp.response;
 
                     var myTable = "<tr><th>Uloga</th><th>Ime</th><th>Prezime</th><th>Nalazi se u:</th></tr>";
 

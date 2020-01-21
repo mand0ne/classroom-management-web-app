@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Rezervacija'
-        // options
     });
 
     return Rezervacija;

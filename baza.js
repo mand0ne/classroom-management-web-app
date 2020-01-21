@@ -25,8 +25,8 @@ db.rezervacija.belongsTo(db.osoblje, { as: 'osobaRezervacije', foreignKey: { nam
 db.osoblje.hasMany(db.rezervacija, { as: 'osobaRezervacije', foreignKey: { name: 'osoba', allowNull: false }, onDelete: 'cascade' });
 
 // Veza 1-1 (rezervacija - termin)
-db.rezervacija.belongsTo(db.termin, { as: 'terminRezervacije', foreignKey: { name: 'termin', allowNull: false }, onDelete: 'cascade' });
-db.termin.hasOne(db.rezervacija, { as: 'terminRezervacije', foreignKey: { name: 'termin', allowNull: false }, onDelete: 'cascade' });
+db.rezervacija.belongsTo(db.termin, { as: 'terminRezervacije', foreignKey: { name: 'termin', unique: true, allowNull: false }, onDelete: 'cascade' });
+db.termin.hasOne(db.rezervacija, { as: 'terminRezervacije', foreignKey: { name: 'termin', unique: true, allowNull: false }, onDelete: 'cascade' });
 
 // Veza n-1 (rezervacija - sala)
 db.rezervacija.belongsTo(db.sala, { as: 'salaRezervacije', foreignKey: { name: 'sala', allowNull: false }, onDelete: 'cascade' });
@@ -61,13 +61,13 @@ let inicijalizacija = function inicializacija() {
 
                     Promise.all(rezervacijeListaPromisa).then(function (rezervacije) {
                         resolve(rezervacije);
-                    }).catch(function (err) { console.log("Rezervacije error: " + err); });
+                    }).catch(function (err) { console.log("Rezervacije inicijalizacija rror: " + err); });
 
-                }).catch(function (err) { console.log("Termini error: " + err); });
+                }).catch(function (err) { console.log("Termini inicijalizacija error: " + err); });
 
-            }).catch(function (err) { console.log("Sale error: " + err); });
+            }).catch(function (err) { console.log("Sale inicijalizacija error: " + err); });
 
-        }).catch(function (err) { console.log("Osoblje error: " + err); });
+        }).catch(function (err) { console.log("Osoblje inicijalizacija error: " + err); });
     });
 }
 

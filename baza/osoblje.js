@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const Model = Sequelize.Model;
 
 module.exports = (sequelize, DataTypes) => {
-    class Osoblje extends Model {}
+    class Osoblje extends Model { }
 
     Osoblje.init({
         // attributes
@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         {
             sequelize,
             modelName: 'Osoblje'
-            // options
         });
     return Osoblje;
 }

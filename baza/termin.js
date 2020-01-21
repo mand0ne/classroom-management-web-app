@@ -9,7 +9,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        dan: DataTypes.INTEGER,
+        dan: {
+            type: DataTypes.INTEGER,
+            validate: {
+                is: /^[0-6]$/
+            }
+        },
         datum: {
             type: DataTypes.STRING,
             validate: {
@@ -28,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Termin'
-        // options
     });
 
     return Termin;

@@ -40,11 +40,12 @@ function parsirajZauzecaIzBaze(rezultat) {
             var vanrednoZauzece = {
                 datum: {
                     dan: parseInt(rezervacijaDatum[0]),
-                    mjesec: parseInt(rezervacijaDatum[1]) - 1,
+                    mjesec: parseInt(rezervacijaDatum[1]) - 1,  // u bazi je spremljeno u 'normalnom' formatu, treba nam od 0-11
                     godina: parseInt(rezervacijaDatum[2])
                 }, pocetak: rezervacija.pocetak, kraj: rezervacija.kraj,
                 naziv: rezervacija.naziv, predavac: rezervacija.predavac
             };
+
             zauzecaJson.vanredna.push(vanrednoZauzece);
         }
     }
@@ -144,12 +145,15 @@ app.get('/', function (req, res) {
 // GET localhost:8080/zauzeca
 app.get('/zauzeca', function (req, res) {
 
-    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
-        // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
+    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', "
+        + "TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' " +
+        "FROM osobljes o, salas s, termins t, rezervacijas r  " +
+        "WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
+            // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
 
-        parsiranaZauzeca = parsirajZauzecaIzBaze(rezultat);
-        res.status(200).send(parsiranaZauzeca);
-    }).catch(err => { console.log("Greška pri dobavljanju zauzeca: " + err) });
+            parsiranaZauzeca = parsirajZauzecaIzBaze(rezultat);
+            res.status(200).send(parsiranaZauzeca);
+        }).catch(err => { console.log("Greška pri dobavljanju zauzeca: " + err) });
 });
 
 
@@ -193,67 +197,74 @@ app.get('/images', function (req, res) {
 });
 
 
-
 // POST localhost:8080/rezervisiPeriodicno
 app.post('/rezervisiPeriodicno', function (req, res) {
 
-    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
+    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', "
+        + "TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' "
+        + "FROM osobljes o, salas s, termins t, rezervacijas r  "
+        + "WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
 
-        try {
-            novoZauzece = req.body;
-            validirajPeriodicno(novoZauzece);
-        } catch (error) {
-            res.status(400).send(error);
-        }
-
-        // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
-
-        var zauzecaJson = parsirajZauzecaIzBaze(rezultat);
-
-        // Validacija
-        // Provjera dostupnosti uz Lodash
-        for (let i = 0; i < zauzecaJson.vanredna.length; i++) {
-            var vanrednoZauzece = zauzecaJson.vanredna[i];
-
-            if (_.isEqualWith(novoZauzece, vanrednoZauzece, komparatorPeriodicnoVanredno)) {
-                res.status(403).send({ zauzeceKojeSprjecava: vanrednoZauzece, svjezaZauzeca: zauzecaJson });
+            try {
+                novoZauzece = req.body;
+                validirajPeriodicno(novoZauzece);
+            } catch (error) {
+                res.status(400).send(error);
                 return;
             }
-        }
 
-        for (let i = 0; i < zauzecaJson.periodicna.length; i++) {
-            var periodicnoZauzece = zauzecaJson.periodicna[i];
+            // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
+            var zauzecaJson = parsirajZauzecaIzBaze(rezultat);
 
-            if (_.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicna)) {
-                res.status(403).send({ zauzeceKojeSprjecava: periodicnoZauzece, svjezaZauzeca: zauzecaJson });
-                return;
+            // Validacija
+            // Provjera dostupnosti uz Lodash
+            for (let i = 0; i < zauzecaJson.vanredna.length; i++) {
+                var vanrednoZauzece = zauzecaJson.vanredna[i];
+
+                if (_.isEqualWith(novoZauzece, vanrednoZauzece, komparatorPeriodicnoVanredno)) {
+                    res.status(403).send({ zauzeceKojeSprjecava: vanrednoZauzece, svjezaZauzeca: zauzecaJson });
+                    return;
+                }
             }
-        }
 
-        // Sala nije zauzeta, insert u bazu putem ulancanih promisa                 
-        zauzecaJson.periodicna.push(novoZauzece);
-        predavac = novoZauzece.predavac.split(" ");
+            for (let i = 0; i < zauzecaJson.periodicna.length; i++) {
+                var periodicnoZauzece = zauzecaJson.periodicna[i];
 
-        db.osoblje.findOrCreate({
-            where: { uloga: predavac[0], ime: predavac[1], prezime: predavac[2] }
-        }).then(function ([osoba, created]) {
-            idOsobe = osoba.id;
+                if (_.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicna)) {
+                    res.status(403).send({ zauzeceKojeSprjecava: periodicnoZauzece, svjezaZauzeca: zauzecaJson });
+                    return;
+                }
+            }
 
-            db.termin.findOrCreate({
-                where: { redovni: true, dan: novoZauzece.dan, datum: null, semestar: novoZauzece.semestar, pocetak: novoZauzece.pocetak, kraj: novoZauzece.kraj }
-            }).then(function ([termin, created]) {
-                idTermina = termin.id;
+            // Sala nije zauzeta, insert u bazu putem ulancanih promisa                 
+            zauzecaJson.periodicna.push(novoZauzece);
+            predavac = novoZauzece.predavac.split(" ");
+
+            db.osoblje.findOrCreate({
+                where: { uloga: predavac[0], ime: predavac[1], prezime: predavac[2] }
+            }).then(function ([osoba, created]) {
+                idOsobe = osoba.id;
+
+                db.termin.findOrCreate({
+                    where: {
+                        redovni: true, dan: novoZauzece.dan, datum: null, semestar: novoZauzece.semestar,
+                        pocetak: novoZauzece.pocetak, kraj: novoZauzece.kraj
+                    }
+                }).then(function ([termin, created]) {
+                    idTermina = termin.id;
 
 
-                db.sala.findOrCreate({
-                    where: { naziv: novoZauzece.naziv }
-                }).then(function ([sala, created]) {
-                    idSale = sala.id;
+                    db.sala.findOrCreate({
+                        where: { naziv: novoZauzece.naziv }
+                    }).then(function ([sala, created]) {
+                        idSale = sala.id;
 
-                    db.rezervacija.findOrCreate({
-                        where: { termin: idTermina, sala: idSale, osoba: idOsobe }
-                    }).then(function ([rezervacija, created]) {
-                        res.status(200).send(zauzecaJson);
+                        db.rezervacija.findOrCreate({
+                            where: { termin: idTermina, sala: idSale, osoba: idOsobe }
+                        }).then(function ([rezervacija, created]) {
+                            res.status(200).send(zauzecaJson);
+                        }).catch(err => { console.log(err); });
+
                     }).catch(err => { console.log(err); });
 
                 }).catch(err => { console.log(err); });
@@ -261,71 +272,75 @@ app.post('/rezervisiPeriodicno', function (req, res) {
             }).catch(err => { console.log(err); });
 
         }).catch(err => { console.log(err); });
-
-    }).catch(err => { console.log(err); });
 });
 
 
 // POST localhost:8080/rezervisiVanredno
 app.post('/rezervisiVanredno', function (req, res) {
-    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' FROM osobljes o, salas s, termins t, rezervacijas r  WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
+    db.sequelize.query("SELECT CONCAT(o.uloga, ' ', o.ime, ' ', o.prezime) as 'predavac', s.naziv as 'naziv', t.redovni as 'redovni', t.dan as 'dan', t.datum as 'datum', t.semestar as 'semestar', "
+        + "TIME_FORMAT(t.pocetak, '%H:%i') as 'pocetak', TIME_FORMAT(t.kraj, '%H:%i') as 'kraj' "
+        + "FROM osobljes o, salas s, termins t, rezervacijas r  "
+        + " WHERE r.termin = t.id AND r.sala = s.id AND r.osoba = o.id", { type: db.Sequelize.QueryTypes.SELECT }).then(rezultat => {
 
-        try {
-            novoZauzece = req.body;
-            validirajVanredno(novoZauzece);
-
-        } catch (error) {
-            res.status(400).send(error);
-            reject(error);
-        }
-
-        // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
-
-        var zauzecaJson = parsirajZauzecaIzBaze(rezultat);
-
-        // Validacija
-        // Provjera dostupnosti uz Lodash
-        for (let i = 0; i < zauzecaJson.vanredna.length; i++) {
-            var vanrednoZauzece = zauzecaJson.vanredna[i];
-
-            if (_.isEqualWith(vanrednoZauzece, novoZauzece, komparatorVanredna)) {
-                res.status(403).send({ zauzeceKojeSprjecava: vanrednoZauzece, svjezaZauzeca: zauzecaJson });
+            try {
+                novoZauzece = req.body;
+                validirajVanredno(novoZauzece);
+            } catch (error) {
+                res.status(400).send(error);
                 return;
             }
-        }
 
-        for (let i = 0; i < zauzecaJson.periodicna.length; i++) {
-            var periodicnoZauzece = zauzecaJson.periodicna[i];
+            // Ovdje sad imamo sve rezervacije, treba ih sada posebno obraditi u adekvatan oblik (periodicno ili vanredno)
+            var zauzecaJson = parsirajZauzecaIzBaze(rezultat);
 
-            if (_.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicnoVanredno)) {
-                res.status(403).send({ zauzeceKojeSprjecava: periodicnoZauzece, svjezaZauzeca: zauzecaJson });
-                return;
+            // Validacija
+            // Provjera dostupnosti uz Lodash
+            for (let i = 0; i < zauzecaJson.vanredna.length; i++) {
+                var vanrednoZauzece = zauzecaJson.vanredna[i];
+
+                if (_.isEqualWith(vanrednoZauzece, novoZauzece, komparatorVanredna)) {
+                    res.status(403).send({ zauzeceKojeSprjecava: vanrednoZauzece, svjezaZauzeca: zauzecaJson });
+                    return;
+                }
             }
-        }
 
-        // Sala nije zauzeta, insert u bazu  putem ulancanih promisa              
-        zauzecaJson.vanredna.push(novoZauzece);
-        predavac = novoZauzece.predavac.split(" ");
+            for (let i = 0; i < zauzecaJson.periodicna.length; i++) {
+                var periodicnoZauzece = zauzecaJson.periodicna[i];
 
-        db.osoblje.findOrCreate({
-            where: { uloga: predavac[0], ime: predavac[1], prezime: predavac[2] }
-        }).then(function ([osoba, created]) {
-            idOsobe = osoba.id;
+                if (_.isEqualWith(periodicnoZauzece, novoZauzece, komparatorPeriodicnoVanredno)) {
+                    res.status(403).send({ zauzeceKojeSprjecava: periodicnoZauzece, svjezaZauzeca: zauzecaJson });
+                    return;
+                }
+            }
 
-            db.termin.findOrCreate({
-                where: { redovni: false, dan: null, datum: novoZauzece.datum.dan + "." + (novoZauzece.datum.mjesec + 1) + "." + novoZauzece.datum.godina, semestar: null, pocetak: novoZauzece.pocetak, kraj: novoZauzece.kraj }
-            }).then(function ([termin, created]) {
-                idTermina = termin.id;
+            // Sala nije zauzeta, insert u bazu  putem ulancanih promisa              
+            zauzecaJson.vanredna.push(novoZauzece);
+            predavac = novoZauzece.predavac.split(" ");
 
-                db.sala.findOrCreate({
-                    where: { naziv: novoZauzece.naziv }
-                }).then(function ([sala, created]) {
-                    idSale = sala.id;
+            db.osoblje.findOrCreate({
+                where: { uloga: predavac[0], ime: predavac[1], prezime: predavac[2] }
+            }).then(function ([osoba, created]) {
+                idOsobe = osoba.id;
 
-                    db.rezervacija.findOrCreate({
-                        where: { termin: idTermina, sala: idSale, osoba: idOsobe }
-                    }).then(function ([rezervacija, created]) {
-                        res.status(200).send(zauzecaJson);
+                db.termin.findOrCreate({
+                    where: {
+                        redovni: false, dan: null, datum: novoZauzece.datum.dan + "." + (novoZauzece.datum.mjesec + 1) + "." + novoZauzece.datum.godina,
+                        semestar: null, pocetak: novoZauzece.pocetak, kraj: novoZauzece.kraj
+                    }
+                }).then(function ([termin, created]) {
+                    idTermina = termin.id;
+
+                    db.sala.findOrCreate({
+                        where: { naziv: novoZauzece.naziv }
+                    }).then(function ([sala, created]) {
+                        idSale = sala.id;
+
+                        db.rezervacija.findOrCreate({
+                            where: { termin: idTermina, sala: idSale, osoba: idOsobe }
+                        }).then(function ([rezervacija, created]) {
+                            res.status(200).send(zauzecaJson);
+                        }).catch(err => { console.log(err); });
+
                     }).catch(err => { console.log(err); });
 
                 }).catch(err => { console.log(err); });
@@ -333,24 +348,22 @@ app.post('/rezervisiVanredno', function (req, res) {
             }).catch(err => { console.log(err); });
 
         }).catch(err => { console.log(err); });
-
-    }).catch(err => { console.log(err); });
 });
 
 app.get('/rezervacijeOsoba', function (req, res) {
     var today = new Date();
     var trenutniDatum = today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
     var trenutniDan = (today.getDay() + 6) % 7;
-    var trenutnoVrijeme = parseInt(today.getHours().toString() + today.getMinutes().toString());
+    var sati = today.getHours().toString();
+    var minute = ('0' + today.getMinutes()).slice(-2);
+    var trenutnoVrijeme = parseInt(sati + minute);
 
-    console.log(trenutniDan);
     db.sequelize.query("SELECT o.ime as 'ime', o.prezime as 'prezime', o.uloga as 'uloga', s.naziv as 'naziv' " +
         "FROM osobljes o, salas s, termins t, rezervacijas r " +
         "WHERE r.termin = t.id and r.sala = s.id and r.osoba = o.id and TIME_FORMAT(t.pocetak, '%H%i') <= ? and TIME_FORMAT(t.kraj, '%H%i') >= ? " +
         "AND ((datum IS NOT NULL AND datum = ?)  OR (dan IS NOT NULL AND dan = ?))",
         { replacements: [trenutnoVrijeme, trenutnoVrijeme, trenutniDatum, trenutniDan], type: db.sequelize.QueryTypes.SELECT })
         .then(osobeKojeSuRezervisale => {
-            console.log(osobeKojeSuRezervisale);
             db.sequelize.query("SELECT ime as 'ime', prezime as 'prezime', uloga as 'uloga', 'kancelariji' as 'naziv' FROM osobljes",
                 { type: db.sequelize.QueryTypes.SELECT })
                 .then(sveOsobe => {
@@ -384,6 +397,7 @@ db.sequelize.sync({ force: true }).then(function () {
         });
     });
 });
+
 
 // Odma na pocetku kesiraj sve slike, kasnije pomocu chokidara prati promjene...
 fs.readdir(__dirname + "/public/images/", (err, files) => {
