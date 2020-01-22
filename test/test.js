@@ -5,6 +5,13 @@ const app = require('../index.js');
 const api = supertest(app);
 const _ = require('lodash');
 
+before(done => {
+    app.on('appStarted', () => {
+        console.log("\n");
+        done();
+    });
+});
+
 describe("Testiranje serverskih funkcionalnosti: ", function () {
 
     let zauzeca = [];
@@ -26,13 +33,6 @@ describe("Testiranje serverskih funkcionalnosti: ", function () {
 
     let periodicnoZauzece1 = { dan: 0, semestar: "zimski", pocetak: "08:00", kraj: "22:00", naziv: "0-01", predavac: "profesor Nikola Tesla" };
     let periodicnoZauzece2 = { dan: 1, semestar: "zimski", pocetak: "08:00", kraj: "22:00", naziv: "0-01", predavac: "profesor Richard Feynman" };
-
-    before(done => {
-        app.on('appStarted', () => {
-            done();
-        });
-    });
-
 
     it("GET /osoblje treba vraca status kod 200", function (done) {
         api.get('/osoblje')

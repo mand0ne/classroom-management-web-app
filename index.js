@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const chokidar = require('chokidar');
 var _ = require('lodash');
-const db = require('./baza.js');
+const db = require('./db.js');
 
 var kesiraneSlikeServer = [];
 const app = express();
@@ -392,7 +392,7 @@ db.sequelize.sync({ force: true }).then(function () {
     db.inicijalizacija().then(function () {
         console.log("Gotovo kreiranje tabela i ubacivanje pocetnih podataka!");
         app.listen(8080, 'localhost', function () {
-            console.log('App has started');
+            console.log('Server pokrenut. Slusam na port 8080...');
             app.emit("appStarted");
         });
     });
